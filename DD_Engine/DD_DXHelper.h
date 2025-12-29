@@ -1,9 +1,10 @@
 #pragma once
 #include "framework.h"
-#include <d3dx11.h>
-#include <xnamath.h>
+#include <DirectXMath.h>
 #include <d3dcompiler.h>
 #include <d3dcommon.h>
+
+using namespace DirectX;
 
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")

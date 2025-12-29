@@ -229,24 +229,32 @@ void DD_Device::DestroyDevice()
 		m_deviceContext->Flush();
 	}
 
-#ifdef _DEBUG
-	if (m_device)
+	// Important: Set windowed mode before releasing swap chain
+	if (m_swapChain)
 	{
-		ID3D11Debug* pDebug = nullptr;
-		OutputDebugStringW(L"Starting Live Direct3D Object Dump:\r\n");
-		if (SUCCEEDED(m_device->QueryInterface(__uuidof(ID3D11Debug), (void**)&pDebug)) && pDebug)
-		{
-			pDebug->ReportLiveDeviceObjects(D3D11_RLDO_SUMMARY | D3D11_RLDO_DETAIL);
-			pDebug->Release();
-		}
-		OutputDebugStringW(L"Starting Live Direct3D Object Dump:\r\n");
+		m_swapChain->SetFullscreenState(FALSE, nullptr);
 	}
-#endif
+
 	m_renderTargetView.Reset();
 	m_depthStencilView.Reset();
 	m_depthStencil.Reset();
 	m_swapChain.Reset();
 	m_deviceContext.Reset();
+
+#ifdef _DEBUG
+	//if (m_device)
+	//{
+	//	ID3D11Debug* pDebug = nullptr;
+	//	OutputDebugStringW(L"Starting Live Direct3D Object Dump:\r\n");
+	//	if (SUCCEEDED(m_device->QueryInterface(__uuidof(ID3D11Debug), (void**)&pDebug)) && pDebug)
+	//	{
+	//		pDebug->ReportLiveDeviceObjects(D3D11_RLDO_SUMMARY | D3D11_RLDO_DETAIL);
+	//		pDebug->Release();
+	//	}
+	//	OutputDebugStringW(L"Ending Live Direct3D Object Dump:\r\n");
+	//}
+#endif
+
 	m_device.Reset();
 }
 

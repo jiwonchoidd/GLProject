@@ -21,11 +21,15 @@
 #include <vector>
 #include <unordered_map>
 #include <queue>
+#include <memory>
+#include <chrono>
 
 #include <wrl.h>
 #include <shellapi.h>
-#include <memory>
-#include <chrono>
+
+#include <d3d11.h>
+#include <dxgi.h>
+#include <DirectXMath.h>
 
 class ISystem
 {

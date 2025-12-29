@@ -1,6 +1,7 @@
 #pragma once
 #include "framework.h"
-#include <xnamath.h>
+
+using namespace DirectX;
 
 class DD_SimpleBox
 {
@@ -19,9 +20,9 @@ public:
 public:
 	void SetTexture(std::shared_ptr<struct FDD_TextureInstance> textureInstance) { m_textureInstance = textureInstance; }
 private:
-	class ID3D11Buffer* m_vertexBuffer = nullptr;
-	class ID3D11Buffer* m_indexBuffer = nullptr;
-	class ID3D11Buffer* m_constantBuffer = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11Buffer> m_vertexBuffer;
+	Microsoft::WRL::ComPtr<ID3D11Buffer> m_indexBuffer;
+	Microsoft::WRL::ComPtr<ID3D11Buffer> m_constantBuffer;
 private:
 	XMFLOAT3 m_rotation{};
 	XMFLOAT3 m_position{};

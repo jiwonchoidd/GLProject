@@ -180,8 +180,9 @@ void DD_SimpleBox::Render()
 
     UINT stride = sizeof(SimpleVertex);
     UINT offset = 0;
-    ctx->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
-    ctx->IASetIndexBuffer(m_indexBuffer, DXGI_FORMAT_R16_UINT, 0);
+    ID3D11Buffer* vb = m_vertexBuffer.Get();
+    ctx->IASetVertexBuffers(0, 1, &vb, &stride, &offset);
+    ctx->IASetIndexBuffer(m_indexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0);
 
     if (m_textureInstance)
     {
@@ -199,9 +200,10 @@ void DD_SimpleBox::Render()
     cb.mWorld = XMMatrixTranspose(worldMat);
     cb.vMeshColor = g_vMeshColor;
 
-    ctx->UpdateSubresource(m_constantBuffer, 0, nullptr, &cb, 0, 0);
-    ctx->VSSetConstantBuffers(2, 1, &m_constantBuffer);
-    ctx->PSSetConstantBuffers(2, 1, &m_constantBuffer);
+    ctx->UpdateSubresource(m_constantBuffer.Get(), 0, nullptr, &cb, 0, 0);
+    ID3D11Buffer* cb_ptr = m_constantBuffer.Get();
+    ctx->VSSetConstantBuffers(2, 1, &cb_ptr);
+    ctx->PSSetConstantBuffers(2, 1, &cb_ptr);
 
     // µå·Î¿ì
     ctx->DrawIndexed(36, 0, 0);
@@ -229,7 +231,4 @@ DD_SimpleBox::DD_SimpleBox()
 
 DD_SimpleBox::~DD_SimpleBox()
 {
-    if (m_constantBuffer) m_constantBuffer->Release();
-    if (m_vertexBuffer) m_vertexBuffer->Release();
-    if (m_indexBuffer) m_indexBuffer->Release();
 }

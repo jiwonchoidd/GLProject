@@ -66,10 +66,10 @@ HRESULT DD_DXHelper::CompileShaderFromFile(const WCHAR* szFileName, LPCSTR szEnt
 	dwShaderFlags |= D3DCOMPILE_DEBUG;
 #endif
 
-	ID3DBlob* pErrorBlob;
+	ID3DBlob* pErrorBlob = nullptr;
 
-	hr = D3DX11CompileFromFile(szFileName, NULL, NULL, szEntryPoint, szShaderModel,
-		dwShaderFlags, 0, NULL, ppBlobOut, &pErrorBlob, NULL);
+	hr = D3DCompileFromFile(szFileName, nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, 
+		szEntryPoint, szShaderModel, dwShaderFlags, 0, ppBlobOut, &pErrorBlob);
 	if (FAILED(hr))
 	{
 		if (pErrorBlob != NULL)

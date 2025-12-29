@@ -11,8 +11,8 @@ using namespace Microsoft::WRL;
 //--------------------------------------------------------------------------------------
 // Global Variables
 //--------------------------------------------------------------------------------------
-ID3D11Buffer* g_pCBNeverChanges = NULL;
-ID3D11Buffer* g_pCBChangeOnResize = NULL;
+ComPtr<ID3D11Buffer> g_pCBNeverChanges;
+ComPtr<ID3D11Buffer> g_pCBChangeOnResize;
 
 XMMATRIX g_View;
 XMMATRIX g_Projection;
@@ -30,7 +30,7 @@ struct CBChangeOnResize
 std::vector<std::wstring> g_texture;
 std::vector<DD_SimpleBox*> g_box;
 
-// DD_Engine -----------------------------------------------------------------------------
+// DD_Engine ----------------------------------------------------------------------------
 
 void DD_Core::OnInit()
 {
@@ -76,7 +76,7 @@ void DD_Core::OnInit()
 
 	CBNeverChanges cbNeverChanges;
 	cbNeverChanges.mView = XMMatrixTranspose(g_View);
-	gDevice.GetDeviceContext()->UpdateSubresource(g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0);
+	gDevice.GetDeviceContext()->UpdateSubresource(g_pCBNeverChanges.Get(), 0, NULL, &cbNeverChanges, 0, 0);
 
 	std::vector<std::wstring> imgList;
 	if (DD_DXHelper::FindDirectoryItem(L"", L".jpg", imgList))
@@ -106,12 +106,10 @@ void DD_Core::OnUpdate()
 	prevTime = currentTime;
 	elapsedTime += deltaTime;
 
-
 	for (const auto& box : g_box)
 	{
 		box->AddPos({ 0.f, static_cast<float>(0.5f * deltaTime), 0.f });
 	}
-
 
 	for (const auto& system : m_systems)
 	{
@@ -125,8 +123,9 @@ void DD_Core::OnRender()
 	gUIMng.PreRender();
 
 	{
-		gDevice.GetDeviceContext()->VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
-		gDevice.GetDeviceContext()->VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
+		ID3D11Buffer* cbs[] = { g_pCBNeverChanges.Get(), g_pCBChangeOnResize.Get() };
+		gDevice.GetDeviceContext()->VSSetConstantBuffers(0, 1, &cbs[0]);
+		gDevice.GetDeviceContext()->VSSetConstantBuffers(1, 1, &cbs[1]);
 
 		for (const auto& box : g_box)
 		{
@@ -146,10 +145,12 @@ void DD_Core::OnDestroy()
 		delete box;
 		box = nullptr;
 	}
-	DD_SimpleBox::CachePipline();
+	g_box.clear();
 
-	if (g_pCBNeverChanges) g_pCBNeverChanges->Release();
-	if (g_pCBChangeOnResize) g_pCBChangeOnResize->Release();
+	DD_SimpleBox::ClearPipline();
+
+	g_pCBNeverChanges.Reset();
+	g_pCBChangeOnResize.Reset();
 
 	for (const auto& system : m_systems)
 	{
@@ -166,7 +167,7 @@ void DD_Core::OnResize(UINT width, UINT height)
 	g_Projection = XMMatrixPerspectiveFovLH(XMConvertToRadians(80.0f), GetWidth() / (FLOAT)GetHeight(), 0.1f, 1000.0f);
 	CBChangeOnResize cbChangesOnResize;
 	cbChangesOnResize.mProjection = XMMatrixTranspose(g_Projection);
-	gDevice.GetDeviceContext()->UpdateSubresource(g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0);
+	gDevice.GetDeviceContext()->UpdateSubresource(g_pCBChangeOnResize.Get(), 0, NULL, &cbChangesOnResize, 0, 0);
 	gDevice.Resize(GetWidth(), GetHeight());
 }
 
