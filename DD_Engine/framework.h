@@ -1,5 +1,17 @@
 #pragma once
 
+#define WIN32_LEAN_AND_MEAN
+
+#include <windows.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
+#include <memory>
+#include <vector>
+#include <chrono>
+#include <iostream>
+#include <cstdint>
+
 #if defined(_WIN32) || defined(_WIN64)
 #  ifdef DD_ENGINE_EXPORTS
 #    define DD_ENGINE_API __declspec(dllexport)
@@ -9,27 +21,6 @@
 #else
 #  define DD_ENGINE_API
 #endif
-
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN 
-#endif
-
-#include "resource.h"
-#include <windows.h>
-
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <queue>
-#include <memory>
-#include <chrono>
-
-#include <wrl.h>
-#include <shellapi.h>
-
-#include <d3d11.h>
-#include <dxgi.h>
-#include <DirectXMath.h>
 
 class ISystem
 {

@@ -1,97 +1,73 @@
 #include "DD_Core.h"
-#include "DD_Device.h"
+#include "DD_GLDevice.h"
 #include "DD_WinApplication.h"
-#include "DD_TextureMananger.h"
-#include "DD_UIMananger.h"
 #include "DD_SimpleBox.h"
-#include "DD_DXHelper.h"
 
-using namespace Microsoft::WRL;
-
-//--------------------------------------------------------------------------------------
 // Global Variables
-//--------------------------------------------------------------------------------------
-ComPtr<ID3D11Buffer> g_pCBNeverChanges;
-ComPtr<ID3D11Buffer> g_pCBChangeOnResize;
+GLuint g_cbNeverChanges = 0;
+GLuint g_cbChangeOnResize = 0;
 
-XMMATRIX g_View;
-XMMATRIX g_Projection;
+Matrix4 g_View;
+Matrix4 g_Projection;
 
-struct CBNeverChanges
-{
-	XMMATRIX mView;
-};
-
-struct CBChangeOnResize
-{
-	XMMATRIX mProjection;
-};
-
-std::vector<std::wstring> g_texture;
 std::vector<DD_SimpleBox*> g_box;
 
 // DD_Engine ----------------------------------------------------------------------------
 
 void DD_Core::OnInit()
 {
-	HRESULT hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
-	if (FAILED(hr))
-	{
-		return;
-	}
+	printf("DD_Core::OnInit()\n");
 
-	m_systems.push_back(DD_Device::GetInstance());
-	m_systems.push_back(DD_UIMananger::GetInstance());
-	m_systems.push_back(DD_TextureMananger::GetInstance());
-
-	gDevice.CreateDevice(DD_WinApplication::GetHwnd());
-
+	// Initialize systems FIRST (before CreateDevice)
+	m_systems.push_back(DD_GLDevice::GetInstance());
+	
 	for (const auto& system : m_systems)
 	{
 		system->Initialize();
 	}
 
-	gDevice.GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	// Create the constant buffers
-	D3D11_BUFFER_DESC bd;
-	ZeroMemory(&bd, sizeof(bd));
-	bd.Usage = D3D11_USAGE_DEFAULT;
-	bd.ByteWidth = sizeof(CBNeverChanges);
-	bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	bd.CPUAccessFlags = 0;
-	hr = gDevice.GetDevice()->CreateBuffer(&bd, NULL, &g_pCBNeverChanges);
-	if (FAILED(hr))
-		return;
-
-	bd.ByteWidth = sizeof(CBChangeOnResize);
-	hr = gDevice.GetDevice()->CreateBuffer(&bd, NULL, &g_pCBChangeOnResize);
-	if (FAILED(hr))
-		return;
-
-	XMVECTOR Eye = XMVectorSet(0.0f, 10.0f, -10.0f, 0.0f);
-	XMVECTOR At = XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
-	XMVECTOR Up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
-	g_View = XMMatrixLookAtLH(Eye, At, Up);
-
-	CBNeverChanges cbNeverChanges;
-	cbNeverChanges.mView = XMMatrixTranspose(g_View);
-	gDevice.GetDeviceContext()->UpdateSubresource(g_pCBNeverChanges.Get(), 0, NULL, &cbNeverChanges, 0, 0);
-
-	std::vector<std::wstring> imgList;
-	if (DD_DXHelper::FindDirectoryItem(L"", L".jpg", imgList))
+	// CreateDevice 호출 (Initialize 이후)
+	if (!gGLDevice.CreateDevice(m_width, m_height))
 	{
-		g_texture = imgList;
+		printf("Failed to create GL device!\n");
+		return;
 	}
 
+	// Setup view matrix - move camera further back
+	Vec3 eye(0.0f, 30.0f, -50.0f);
+	Vec3 at(0.0f, 0.0f, 0.0f);
+	Vec3 up(0.0f, 1.0f, 0.0f);
+	g_View = glm::lookAt(eye, at, up);
+
+	// Initialize projection matrix
+	OnResize(m_width, m_height);
+
 	DD_SimpleBox::CachePipline();
-	int32_t maxBoxCount = 10000;
+
+	int32_t maxBoxCount = 100; // Reduce for testing
+	printf("Creating %d boxes...\n", maxBoxCount);
+
 	for (int32_t i = 0; i < maxBoxCount; ++i)
 	{
 		DD_SimpleBox* box = new DD_SimpleBox();
-		box->Create({ 0.f,0.f, 0.f });
+
+		int gridSize = 5; // 5x5x5 = 125, we'll use 100
+		float spacing = 5.0f;
+		int x = i % gridSize;
+		int y = (i / gridSize) % gridSize;
+		int z = i / (gridSize * gridSize);
+
+		Vec3 pos(
+			(x - gridSize / 2) * spacing,
+			(y - gridSize / 2) * spacing,
+			(z - gridSize / 2) * spacing
+		);
+
+		box->Create(pos);
 		g_box.push_back(box);
 	}
+
+	printf("Created %zu boxes\n", g_box.size());
 }
 
 void DD_Core::OnUpdate()
@@ -108,36 +84,33 @@ void DD_Core::OnUpdate()
 
 	for (const auto& box : g_box)
 	{
-		box->AddPos({ 0.f, static_cast<float>(0.5f * deltaTime), 0.f });
+		box->AddPos(Vec3(0.f, static_cast<float>(0.5f * deltaTime), 0.f));
+		box->AddRot(Vec3(0.f, static_cast<float>(0.3f * deltaTime), 0.f));
 	}
 
 	for (const auto& system : m_systems)
 	{
-		system->Tick(deltaTime);
+		system->Tick(static_cast<float>(deltaTime));
 	}
 }
 
 void DD_Core::OnRender()
 {
-	gDevice.PreRender();
-	gUIMng.PreRender();
+	gGLDevice.PreRender();
 
+	// View and projection are now set inside DD_SimpleBox::Render()
+	for (const auto& box : g_box)
 	{
-		ID3D11Buffer* cbs[] = { g_pCBNeverChanges.Get(), g_pCBChangeOnResize.Get() };
-		gDevice.GetDeviceContext()->VSSetConstantBuffers(0, 1, &cbs[0]);
-		gDevice.GetDeviceContext()->VSSetConstantBuffers(1, 1, &cbs[1]);
-
-		for (const auto& box : g_box)
-		{
-			box->Render();
-		}
+		box->Render();
 	}
-	gUIMng.PostRender();
-	gDevice.PostRender();
+
+	gGLDevice.PostRender();
 }
 
 void DD_Core::OnDestroy()
 {
+	printf("DD_Core::OnDestroy()\n");
+
 	for (auto& box : g_box)
 	{
 		if (!box) continue;
@@ -149,29 +122,28 @@ void DD_Core::OnDestroy()
 
 	DD_SimpleBox::ClearPipline();
 
-	g_pCBNeverChanges.Reset();
-	g_pCBChangeOnResize.Reset();
-
 	for (const auto& system : m_systems)
 	{
 		system->Finalize();
 	}
-	CoUninitialize();
 }
 
-void DD_Core::OnResize(UINT width, UINT height)
+void DD_Core::OnResize(int width, int height)
 {
 	m_width = width;
 	m_height = height;
+	
+	float fov = 80.f * 3.14159265358979323846f / 180.0f;
+	float aspect = static_cast<float>(width) / static_cast<float>(height);
+	g_Projection = glm::perspective(fov, aspect, 0.1f, 1000.0f);
 
-	g_Projection = XMMatrixPerspectiveFovLH(XMConvertToRadians(80.0f), GetWidth() / (FLOAT)GetHeight(), 0.1f, 1000.0f);
-	CBChangeOnResize cbChangesOnResize;
-	cbChangesOnResize.mProjection = XMMatrixTranspose(g_Projection);
-	gDevice.GetDeviceContext()->UpdateSubresource(g_pCBChangeOnResize.Get(), 0, NULL, &cbChangesOnResize, 0, 0);
-	gDevice.Resize(GetWidth(), GetHeight());
+	gGLDevice.Resize(width, height);
+
+	printf("Resized to %dx%d\n", width, height);
 }
 
-DD_Core::DD_Core(UINT width, UINT height, std::wstring name) : DXSample(width, height, name)
+DD_Core::DD_Core(int width, int height, const char* name)
+	: AppBase(width, height, name)
 {
 }
 

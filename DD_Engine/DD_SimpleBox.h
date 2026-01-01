@@ -1,7 +1,6 @@
 #pragma once
 #include "framework.h"
-
-using namespace DirectX;
+#include "DD_GLHelper.h"
 
 class DD_SimpleBox
 {
@@ -9,24 +8,25 @@ public:
 	static bool CachePipline();
 	static void ClearPipline();
 public:
-	void Create(const XMFLOAT3& pos, std::wstring texturePath = L"");
+	void Create(const Vec3& pos);
 public:
 	void Render();
 public:
-	void AddPos(const XMFLOAT3& addpos);
-	void AddRot(const XMFLOAT3& addpos);
-	void SetPos(const XMFLOAT3& pos) { m_position = pos; }
-	XMFLOAT3 GetPos() const { return m_position; }
-public:
-	void SetTexture(std::shared_ptr<struct FDD_TextureInstance> textureInstance) { m_textureInstance = textureInstance; }
+	void AddPos(const Vec3& addpos);
+	void AddRot(const Vec3& addrot);
+	void SetPos(const Vec3& pos) { m_position = pos; }
+	Vec3 GetPos() const { return m_position; }
 private:
-	Microsoft::WRL::ComPtr<ID3D11Buffer> m_vertexBuffer;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> m_indexBuffer;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> m_constantBuffer;
+	GLuint m_vao;
+	GLuint m_vbo;
+	GLuint m_ibo;
+	GLuint m_vertexBuffer;
+	GLuint m_indexBuffer;
+	int m_indexCount;
 private:
-	XMFLOAT3 m_rotation{};
-	XMFLOAT3 m_position{};
-	std::shared_ptr<struct FDD_TextureInstance> m_textureInstance;
+	Vec3 m_rotation;
+	Vec3 m_position;
+	Color m_color;
 public:
 	DD_SimpleBox();
 	virtual ~DD_SimpleBox();

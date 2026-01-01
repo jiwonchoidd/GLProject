@@ -1,50 +1,43 @@
 #pragma once
 #include "framework.h"
 
-class DD_ENGINE_API DXSample
+class DD_ENGINE_API AppBase
 {
 public:
-	DXSample(UINT width, UINT height, std::wstring name);
-	virtual ~DXSample();
+	AppBase(int width, int height, const char* name);
+	virtual ~AppBase();
 public:
 	virtual void OnInit() = 0;
 	virtual void OnUpdate() = 0;
 	virtual void OnRender() = 0;
 	virtual void OnDestroy() = 0;
 
-	virtual void OnKeyDown(UINT8 /*key*/) {}
-	virtual void OnKeyUp(UINT8 /*key*/) {}
-	virtual void OnResize(UINT w, UINT h) {}
+	virtual void OnKeyDown(unsigned char /*key*/) {}
+	virtual void OnKeyUp(unsigned char /*key*/) {}
+	virtual void OnResize(int w, int h) {}
 
-	// Accessors.
-	UINT GetWidth() const { return m_width; }
-	UINT GetHeight() const { return m_height; }
-	const WCHAR* GetTitle() const { return m_title.c_str(); }
-
-	void ParseCommandLineArgs(_In_reads_(argc) WCHAR* argv[], int argc);
+	// Accessors
+	int GetWidth() const { return m_width; }
+	int GetHeight() const { return m_height; }
+	const char* GetTitle() const { return m_title; }
 
 protected:
-	void SetCustomWindowText(LPCWSTR text);
-
-	UINT m_width;
-	UINT m_height;
+	int m_width;
+	int m_height;
 	float m_aspectRatio;
 
-	bool m_useWarpDevice;
-
 private:
-	std::wstring m_title;
+	const char* m_title;
 };
 
-class DD_ENGINE_API DD_WinApplication
+// GLFW-based application (works on desktop and web with Emscripten)
+class DD_ENGINE_API DD_Application
 {
 public:
-    static int Run(class DXSample* sample, HINSTANCE hInstance, int nCmdShow);
-    static HWND GetHwnd() { return m_hwnd; }
-
-protected:
-    static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
+    static int Run(AppBase* app);
+    static void MainLoop();
+    static void OnResize();
+    
 private:
-    static HWND m_hwnd;
+    static AppBase* s_app;
 };

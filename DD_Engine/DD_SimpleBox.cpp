@@ -1,234 +1,258 @@
 #include "DD_SimpleBox.h"
-#include "DD_Core.h"
-#include "DD_Device.h"
-#include "DD_TextureMananger.h"
-
-using Microsoft::WRL::ComPtr;
+#include "DD_GLDevice.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 struct SimpleVertex
 {
-    XMFLOAT3 Pos;
-    XMFLOAT2 Tex;
+	glm::vec3 Pos;
+	glm::vec2 Tex;
 };
 
-struct CBObject
-{
-    XMMATRIX mWorld;
-    XMFLOAT4 vMeshColor;
-};
-
-XMFLOAT4 g_vMeshColor(0.7f, 0.7f, 0.7f, 1.0f);
-
-// 공유 파이프라인 리소스
 namespace
 {
-    ComPtr<ID3D11InputLayout>  s_inputLayout;
-    ComPtr<ID3D11VertexShader> s_vs;
-    ComPtr<ID3D11PixelShader>  s_ps;
-    ComPtr<ID3D11SamplerState> s_sampler;
-    bool                       s_initialized = false;
+	GLuint s_shaderProgram = 0;
+	GLint s_modelLoc = -1;
+	GLint s_viewLoc = -1;
+	GLint s_projLoc = -1;
+	bool s_initialized = false;
 }
 
 bool DD_SimpleBox::CachePipline()
 {
-    if (s_initialized)
-        return true;
+	if (s_initialized) return true;
 
-    ComPtr<ID3DBlob> vsBlob;
-    ComPtr<ID3DBlob> psBlob;
-    HRESULT hr = DD_DXHelper::CompileShaderFromFile(DD_DXHelper::GetAssetsPath(L"Test.hlsl").c_str(),
-        "VS", "vs_4_0", vsBlob.GetAddressOf());
-    if (FAILED(hr)) return false;
+#ifdef PLATFORM_WEB
+	const char* vertexShaderSource = R"(
+		#version 300 es
+		precision highp float;
+		layout (location = 0) in vec3 aPos;
+		layout (location = 1) in vec2 aTexCoord;
+		
+		uniform mat4 uModel;
+		uniform mat4 uView;
+		uniform mat4 uProjection;
+		
+		out vec2 TexCoord;
+		
+		void main()
+		{
+			gl_Position = uProjection * uView * uModel * vec4(aPos, 1.0);
+			TexCoord = aTexCoord;
+		}
+	)";
 
-    hr = DD_DXHelper::CompileShaderFromFile(DD_DXHelper::GetAssetsPath(L"Test.hlsl").c_str(),
-        "PS", "ps_4_0", psBlob.GetAddressOf());
-    if (FAILED(hr)) return false;
+	const char* fragmentShaderSource = R"(
+		#version 300 es
+		precision highp float;
+		in vec2 TexCoord;
+		out vec4 FragColor;
+		
+		void main()
+		{
+			FragColor = vec4(TexCoord, 0.5, 1.0);
+		}
+	)";
+#else
+	// Desktop OpenGL 3.3 Core
+	const char* vertexShaderSource = R"(
+		#version 330 core
+		layout (location = 0) in vec3 aPos;
+		layout (location = 1) in vec2 aTexCoord;
+		
+		uniform mat4 uModel;
+		uniform mat4 uView;
+		uniform mat4 uProjection;
+		
+		out vec2 TexCoord;
+		
+		void main()
+		{
+			gl_Position = uProjection * uView * uModel * vec4(aPos, 1.0);
+			TexCoord = aTexCoord;
+		}
+	)";
 
-    hr = gDevice.GetDevice()->CreateVertexShader(vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), nullptr, s_vs.GetAddressOf());
-    if (FAILED(hr)) return false;
+	const char* fragmentShaderSource = R"(
+		#version 330 core
+		in vec2 TexCoord;
+		out vec4 FragColor;
+		
+		void main()
+		{
+			FragColor = vec4(TexCoord, 0.5, 1.0);
+		}
+	)";
+#endif
 
-    hr = gDevice.GetDevice()->CreatePixelShader(psBlob->GetBufferPointer(), psBlob->GetBufferSize(), nullptr, s_ps.GetAddressOf());
-    if (FAILED(hr)) return false;
+	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+	glCompileShader(vertexShader);
+	
+	// Check vertex shader compilation
+	GLint success;
+	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		char infoLog[512];
+		glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
+		printf("Vertex shader compilation failed:\n%s\n", infoLog);
+		return false;
+	}
 
-    D3D11_INPUT_ELEMENT_DESC layout[] =
-    {
-        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,  D3D11_INPUT_PER_VERTEX_DATA, 0 },
-        { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT,    0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-    };
-    hr = gDevice.GetDevice()->CreateInputLayout(layout, _countof(layout),
-        vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(),
-        s_inputLayout.GetAddressOf());
-    if (FAILED(hr)) return false;
+	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+	glCompileShader(fragmentShader);
+	
+	// Check fragment shader compilation
+	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		char infoLog[512];
+		glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
+		printf("Fragment shader compilation failed:\n%s\n", infoLog);
+		glDeleteShader(vertexShader);
+		return false;
+	}
 
-    D3D11_SAMPLER_DESC sampDesc;
-    ZeroMemory(&sampDesc, sizeof(sampDesc));
-    sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
-    sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
-    sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
-    sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-    sampDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
-    sampDesc.MinLOD = 0;
-    sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
+	s_shaderProgram = glCreateProgram();
+	glAttachShader(s_shaderProgram, vertexShader);
+	glAttachShader(s_shaderProgram, fragmentShader);
+	glLinkProgram(s_shaderProgram);
+	
+	// Check program linking
+	glGetProgramiv(s_shaderProgram, GL_LINK_STATUS, &success);
+	if (!success) {
+		char infoLog[512];
+		glGetProgramInfoLog(s_shaderProgram, 512, nullptr, infoLog);
+		printf("Shader program linking failed:\n%s\n", infoLog);
+		glDeleteShader(vertexShader);
+		glDeleteShader(fragmentShader);
+		return false;
+	}
 
-    hr = gDevice.GetDevice()->CreateSamplerState(&sampDesc, s_sampler.GetAddressOf());
-    if (FAILED(hr)) return false;
+	glDeleteShader(vertexShader);
+	glDeleteShader(fragmentShader);
 
-    s_initialized = true;
-    return true;
+	s_modelLoc = glGetUniformLocation(s_shaderProgram, "uModel");
+	s_viewLoc = glGetUniformLocation(s_shaderProgram, "uView");
+	s_projLoc = glGetUniformLocation(s_shaderProgram, "uProjection");
+	
+	printf("SimpleBox shader program created successfully (model=%d, view=%d, proj=%d)\n", s_modelLoc, s_viewLoc, s_projLoc);
+
+	s_initialized = true;
+	return true;
 }
 
 void DD_SimpleBox::ClearPipline()
 {
-    s_sampler.Reset();
-    s_inputLayout.Reset();
-    s_vs.Reset();
-    s_ps.Reset();
-    s_initialized = false;
+	if (s_shaderProgram) glDeleteProgram(s_shaderProgram);
+	s_shaderProgram = 0;
+	s_initialized = false;
 }
 
-void DD_SimpleBox::Create(const XMFLOAT3& pos, std::wstring texturePath /*= ""*/)
+void DD_SimpleBox::Create(const Vec3& pos)
 {
-    m_position = pos;
+	m_position = pos;
 
-    static SimpleVertex vertices[] =
-    {
-        { XMFLOAT3(-1.0f,  1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
-        { XMFLOAT3( 1.0f,  1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-        { XMFLOAT3( 1.0f,  1.0f,  1.0f), XMFLOAT2(1.0f, 1.0f) },
-        { XMFLOAT3(-1.0f,  1.0f,  1.0f), XMFLOAT2(0.0f, 1.0f) },
+	// Cube vertices (8 vertices)
+	SimpleVertex vertices[] = {
+		// Front face (Z+)
+		{ glm::vec3(-1.0f, -1.0f,  1.0f), glm::vec2(0.0f, 0.0f) }, // 0
+		{ glm::vec3( 1.0f, -1.0f,  1.0f), glm::vec2(1.0f, 0.0f) }, // 1
+		{ glm::vec3( 1.0f,  1.0f,  1.0f), glm::vec2(1.0f, 1.0f) }, // 2
+		{ glm::vec3(-1.0f,  1.0f,  1.0f), glm::vec2(0.0f, 1.0f) }, // 3
+		
+		// Back face (Z-)
+		{ glm::vec3(-1.0f, -1.0f, -1.0f), glm::vec2(0.0f, 0.0f) }, // 4
+		{ glm::vec3( 1.0f, -1.0f, -1.0f), glm::vec2(1.0f, 0.0f) }, // 5
+		{ glm::vec3( 1.0f,  1.0f, -1.0f), glm::vec2(1.0f, 1.0f) }, // 6
+		{ glm::vec3(-1.0f,  1.0f, -1.0f), glm::vec2(0.0f, 1.0f) }, // 7
+	};
 
-        { XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
-        { XMFLOAT3( 1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-        { XMFLOAT3( 1.0f, -1.0f,  1.0f), XMFLOAT2(1.0f, 1.0f) },
-        { XMFLOAT3(-1.0f, -1.0f,  1.0f), XMFLOAT2(0.0f, 1.0f) },
+	// 36 indices for 12 triangles (6 faces * 2 triangles)
+	GLushort indices[] = {
+		// Front
+		0, 1, 2,  2, 3, 0,
+		// Back
+		5, 4, 7,  7, 6, 5,
+		// Left
+		4, 0, 3,  3, 7, 4,
+		// Right
+		1, 5, 6,  6, 2, 1,
+		// Top
+		3, 2, 6,  6, 7, 3,
+		// Bottom
+		4, 5, 1,  1, 0, 4
+	};
 
-        { XMFLOAT3(-1.0f, -1.0f,  1.0f), XMFLOAT2(0.0f, 0.0f) },
-        { XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-        { XMFLOAT3(-1.0f,  1.0f, -1.0f), XMFLOAT2(1.0f, 1.0f) },
-        { XMFLOAT3(-1.0f,  1.0f,  1.0f), XMFLOAT2(0.0f, 1.0f) },
+	m_indexCount = 36;
 
-        { XMFLOAT3( 1.0f, -1.0f,  1.0f), XMFLOAT2(0.0f, 0.0f) },
-        { XMFLOAT3( 1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-        { XMFLOAT3( 1.0f,  1.0f, -1.0f), XMFLOAT2(1.0f, 1.0f) },
-        { XMFLOAT3( 1.0f,  1.0f,  1.0f), XMFLOAT2(0.0f, 1.0f) },
+	glGenVertexArrays(1, &m_vao);
+	glBindVertexArray(m_vao);
 
-        { XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
-        { XMFLOAT3( 1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-        { XMFLOAT3( 1.0f,  1.0f, -1.0f), XMFLOAT2(1.0f, 1.0f) },
-        { XMFLOAT3(-1.0f,  1.0f, -1.0f), XMFLOAT2(0.0f, 1.0f) },
+	glGenBuffers(1, &m_vertexBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-        { XMFLOAT3(-1.0f, -1.0f,  1.0f), XMFLOAT2(0.0f, 0.0f) },
-        { XMFLOAT3( 1.0f, -1.0f,  1.0f), XMFLOAT2(1.0f, 0.0f) },
-        { XMFLOAT3( 1.0f,  1.0f,  1.0f), XMFLOAT2(1.0f, 1.0f) },
-        { XMFLOAT3(-1.0f,  1.0f,  1.0f), XMFLOAT2(0.0f, 1.0f) },
-    };
+	glGenBuffers(1, &m_indexBuffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    m_textureInstance = gTextureMng.CreateTextureInstance(texturePath.length() > 0 ? texturePath : DD_DXHelper::GetAssetsPath(L"1.jpg"));
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(SimpleVertex), (void*)0);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(SimpleVertex), (void*)(sizeof(glm::vec3)));
+	glEnableVertexAttribArray(1);
 
-    // Vertex Buffer
-    D3D11_BUFFER_DESC bd;
-    ZeroMemory(&bd, sizeof(bd));
-    bd.Usage = D3D11_USAGE_DEFAULT;
-    bd.ByteWidth = sizeof(SimpleVertex) * 24;
-    bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-    bd.CPUAccessFlags = 0;
-
-    D3D11_SUBRESOURCE_DATA initVB{};
-    initVB.pSysMem = vertices;
-
-    HRESULT hr = gDevice.GetDevice()->CreateBuffer(&bd, &initVB, &m_vertexBuffer);
-    if (FAILED(hr)) return;
-
-    // Index Buffer
-    static WORD indices[] =
-    {
-        3,1,0,  2,1,3,
-        6,4,5,  7,4,6,
-        11,9,8, 10,9,11,
-        14,12,13, 15,12,14,
-        19,17,16, 18,17,19,
-        22,20,21, 23,20,22
-    };
-
-    bd.Usage = D3D11_USAGE_DEFAULT;
-    bd.ByteWidth = sizeof(WORD) * 36;
-    bd.BindFlags = D3D11_BIND_INDEX_BUFFER;
-    bd.CPUAccessFlags = 0;
-
-    D3D11_SUBRESOURCE_DATA initIB{};
-    initIB.pSysMem = indices;
-
-    hr = gDevice.GetDevice()->CreateBuffer(&bd, &initIB, &m_indexBuffer);
-    if (FAILED(hr)) return;
-
-    // Constant Buffer (b2)
-    ZeroMemory(&bd, sizeof(bd));
-    bd.Usage = D3D11_USAGE_DEFAULT;
-    bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-    bd.ByteWidth = sizeof(CBObject);
-    hr = gDevice.GetDevice()->CreateBuffer(&bd, NULL, &m_constantBuffer);
+	glBindVertexArray(0);
 }
 
 void DD_SimpleBox::Render()
 {
-    auto* ctx = gDevice.GetDeviceContext();
+	glUseProgram(s_shaderProgram);
+	glBindVertexArray(m_vao);
 
-    ctx->IASetInputLayout(s_inputLayout.Get());
-    ctx->VSSetShader(s_vs.Get(), nullptr, 0);
-    ctx->PSSetShader(s_ps.Get(), nullptr, 0);
-    ctx->PSSetSamplers(0, 1, s_sampler.GetAddressOf());
+	// Get view and projection matrices from DD_Core
+	extern Matrix4 g_View;
+	extern Matrix4 g_Projection;
 
-    UINT stride = sizeof(SimpleVertex);
-    UINT offset = 0;
-    ID3D11Buffer* vb = m_vertexBuffer.Get();
-    ctx->IASetVertexBuffers(0, 1, &vb, &stride, &offset);
-    ctx->IASetIndexBuffer(m_indexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0);
+	// Set uniforms
+	glUniformMatrix4fv(s_viewLoc, 1, GL_FALSE, glm::value_ptr(g_View));
+	glUniformMatrix4fv(s_projLoc, 1, GL_FALSE, glm::value_ptr(g_Projection));
 
-    if (m_textureInstance)
-    {
-        std::shared_ptr<FDD_TextureResource> origin = m_textureInstance->GetOrgin();
-        ctx->PSSetShaderResources(0, 1, &origin->srv);
-    }
+	glm::mat4 model = glm::mat4(1.0f);
+	model = glm::translate(model, m_position);
+	model = glm::rotate(model, m_rotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
 
-    XMMATRIX S = XMMatrixScaling(1, 1, 1);
-    XMMATRIX R = XMMatrixRotationY(m_rotation.y);
-    XMVECTOR posVec = XMLoadFloat3(&m_position);
-    XMMATRIX T = XMMatrixTranslationFromVector(posVec);
-    XMMATRIX worldMat = XMMatrixMultiply(XMMatrixMultiply(S, R), T);
+	glUniformMatrix4fv(s_modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
-    CBObject cb;
-    cb.mWorld = XMMatrixTranspose(worldMat);
-    cb.vMeshColor = g_vMeshColor;
-
-    ctx->UpdateSubresource(m_constantBuffer.Get(), 0, nullptr, &cb, 0, 0);
-    ID3D11Buffer* cb_ptr = m_constantBuffer.Get();
-    ctx->VSSetConstantBuffers(2, 1, &cb_ptr);
-    ctx->PSSetConstantBuffers(2, 1, &cb_ptr);
-
-    // 드로우
-    ctx->DrawIndexed(36, 0, 0);
+	glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, 0);
+	glBindVertexArray(0);
 }
 
-void DD_SimpleBox::AddPos(const XMFLOAT3& addpos)
+void DD_SimpleBox::AddPos(const Vec3& addpos)
 {
-    XMVECTOR currentPos = XMLoadFloat3(&m_position);
-    XMVECTOR deltaPos = XMLoadFloat3(&addpos);
-    XMVECTOR newPos = XMVectorAdd(currentPos, deltaPos);
-    XMStoreFloat3(&m_position, newPos);
+	m_position += addpos;
 }
 
-void DD_SimpleBox::AddRot(const XMFLOAT3& addrot)
+void DD_SimpleBox::AddRot(const Vec3& addrot)
 {
-    XMVECTOR currentRot = XMLoadFloat3(&m_rotation);
-    XMVECTOR deltaRot = XMLoadFloat3(&addrot);
-    XMVECTOR newRot = XMVectorAdd(currentRot, deltaRot);
-    XMStoreFloat3(&m_rotation, newRot);
+	m_rotation += addrot;
 }
 
 DD_SimpleBox::DD_SimpleBox()
+	: m_vao(0)
+	, m_vertexBuffer(0)
+	, m_indexBuffer(0)
+	, m_indexCount(0)
+	, m_rotation(0.0f)
+	, m_position(0.0f)
+	, m_color(1.0f)
 {
 }
 
 DD_SimpleBox::~DD_SimpleBox()
 {
+	if (m_vao) glDeleteVertexArrays(1, &m_vao);
+	if (m_vertexBuffer) glDeleteBuffers(1, &m_vertexBuffer);
+	if (m_indexBuffer) glDeleteBuffers(1, &m_indexBuffer);
 }

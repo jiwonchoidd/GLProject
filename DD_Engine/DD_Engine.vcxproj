@@ -20,11 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DD_Core.cpp" />
-    <ClCompile Include="DD_Device.cpp" />
-    <ClCompile Include="DD_DXHelper.cpp" />
+    <ClCompile Include="DD_GLDevice.cpp" />
     <ClCompile Include="DD_SimpleBox.cpp" />
-    <ClCompile Include="DD_TextureMananger.cpp" />
-    <ClCompile Include="DD_UIMananger.cpp" />
     <ClCompile Include="DD_WinApplication.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
@@ -42,11 +39,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DD_Core.h" />
-    <ClInclude Include="DD_Device.h" />
-    <ClInclude Include="DD_DXHelper.h" />
+    <ClInclude Include="DD_GLDevice.h" />
+    <ClInclude Include="DD_GLHelper.h" />
     <ClInclude Include="DD_SimpleBox.h" />
-    <ClInclude Include="DD_TextureMananger.h" />
-    <ClInclude Include="DD_UIMananger.h" />
     <ClInclude Include="DD_WinApplication.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -155,12 +150,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;DD_ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>DXUT\Core;DXUT\Optional;$(ProjectDir)lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>
@@ -177,20 +172,25 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\DD_Sample\packages\directxtex_desktop_2019.2025.10.28.1\build\native\directxtex_desktop_2019.targets" Condition="Exists('..\DD_Sample\packages\directxtex_desktop_2019.2025.10.28.1\build\native\directxtex_desktop_2019.targets')" />
-    <Import Project="..\DD_Sample\packages\directxtk_uwp.2025.10.28.2\build\native\directxtk_uwp.targets" Condition="Exists('..\DD_Sample\packages\directxtk_uwp.2025.10.28.2\build\native\directxtk_uwp.targets')" />
+    <Import Project="..\DD_Sample\packages\glfw.3.4.0\build\native\glfw.targets" Condition="Exists('..\DD_Sample\packages\glfw.3.4.0\build\native\glfw.targets')" />
+    <Import Project="..\DD_Sample\packages\glm.1.0.3\build\native\glm.targets" Condition="Exists('..\DD_Sample\packages\glm.1.0.3\build\native\glm.targets')" />
+    <Import Project="..\DD_Sample\packages\glew.v140.1.12.0\build\native\glew.v140.targets" Condition="Exists('..\DD_Sample\packages\glew.v140.1.12.0\build\native\glew.v140.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>???�로?�트????컴퓨?�에 ?�는 NuGet ?�키지�?참조?�니?? ?�당 ?�키지�??�운로드?�려�?NuGet ?�키지 복원???�용?�십?�오. ?�세???�용?� http://go.microsoft.com/fwlink/?LinkID=322105�?참조?�십?�오. ?�락???�일?� {0}?�니??</ErrorText>
+      <ErrorText>???�로?�트????컴퓨?�에 ?�는 NuGet ?�키지�?참조?�니?? ?�당 ?�키지�??�운로드?�려�?NuGet ?�키지 복원???�용?�십?�오. ?�세???�용?� http://go.microsoft.com/fwlink/?LinkID=322105�?참조?�십?�오. ?�락???�일?� {0}?�니??</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\DD_Sample\packages\directxtex_desktop_2019.2025.10.28.1\build\native\directxtex_desktop_2019.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\DD_Sample\packages\directxtex_desktop_2019.2025.10.28.1\build\native\directxtex_desktop_2019.targets'))" />
     <Error Condition="!Exists('..\DD_Sample\packages\directxtk_uwp.2025.10.28.2\build\native\directxtk_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\DD_Sample\packages\directxtk_uwp.2025.10.28.2\build\native\directxtk_uwp.targets'))" />
+    <Error Condition="!Exists('..\DD_Sample\packages\glfw.3.4.0\build\native\glfw.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\DD_Sample\packages\glfw.3.4.0\build\native\glfw.targets'))" />
+    <Error Condition="!Exists('..\DD_Sample\packages\glm.1.0.3\build\native\glm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\DD_Sample\packages\glm.1.0.3\build\native\glm.targets'))" />
+    <Error Condition="!Exists('..\DD_Sample\packages\glew.v140.1.12.0\build\native\glew.v140.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\DD_Sample\packages\glew.v140.1.12.0\build\native\glew.v140.targets'))" />
   </Target>
 </Project>
