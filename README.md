@@ -1,2 +1,2 @@
-# DXProject
+# GLProject
 
