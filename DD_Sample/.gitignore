@@ -60,6 +60,9 @@ Makefile
 build/
 web-build/
 
+# GLM (downloaded by CI)
+DD_Engine/glm/
+
 # OS
 .DS_Store
 Thumbs.db
