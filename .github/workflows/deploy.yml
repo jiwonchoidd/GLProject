@@ -41,28 +41,18 @@ jobs:
         emcmake cmake ..
         emmake make
         
-    - name: Generate index page
+    - name: Prepare deployment files
       run: |
         mkdir -p deploy
         
-        # Generate sample list HTML
-        SAMPLES=""
-        for sample in DD_Engine/web-build/DD_Sample/*.html; do
-          if [ -f "$sample" ]; then
-            name=$(basename "$sample" .html)
-            SAMPLES="$SAMPLES<div class=\"sample\"><h2>$name</h2><p>Interactive demo</p><a href=\"$name.html\">Launch</a></div>"
-          fi
-        done
-        
-        # Use template or fallback
+        # Use template if available, otherwise use DD_Sample/docs/index.html
         if [ -f "docs/index.template.html" ]; then
-          sed "s|{{SAMPLES}}|$SAMPLES|g" docs/index.template.html > deploy/index.html
+          cp docs/index.template.html deploy/index.html
         elif [ -f "DD_Sample/docs/index.html" ]; then
           cp DD_Sample/docs/index.html deploy/index.html
         fi
         
-    - name: Copy build files
-      run: |
+        # Copy build files
         if [ -f DD_Engine/web-build/DD_Sample/DD_Sample.html ]; then
           cp DD_Engine/web-build/DD_Sample/DD_Sample.html deploy/
           cp DD_Engine/web-build/DD_Sample/DD_Sample.js deploy/
