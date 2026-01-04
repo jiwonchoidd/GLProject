@@ -23,37 +23,35 @@ bool DD_SimpleBox::CachePipline()
 {
 	if (s_initialized) return true;
 
-#ifdef PLATFORM_WEB
-	const char* vertexShaderSource = R"(
-		#version 300 es
-		precision highp float;
-		layout (location = 0) in vec3 aPos;
-		layout (location = 1) in vec2 aTexCoord;
-		
-		uniform mat4 uModel;
-		uniform mat4 uView;
-		uniform mat4 uProjection;
-		
-		out vec2 TexCoord;
-		
-		void main()
-		{
-			gl_Position = uProjection * uView * uModel * vec4(aPos, 1.0);
-			TexCoord = aTexCoord;
-		}
-	)";
+#ifdef __EMSCRIPTEN__
+	const char* vertexShaderSource = 
+		"#version 300 es\n"
+		"precision highp float;\n"
+		"layout (location = 0) in vec3 aPos;\n"
+		"layout (location = 1) in vec2 aTexCoord;\n"
+		"\n"
+		"uniform mat4 uModel;\n"
+		"uniform mat4 uView;\n"
+		"uniform mat4 uProjection;\n"
+		"\n"
+		"out vec2 TexCoord;\n"
+		"\n"
+		"void main()\n"
+		"{\n"
+		"    gl_Position = uProjection * uView * uModel * vec4(aPos, 1.0);\n"
+		"    TexCoord = aTexCoord;\n"
+		"}\n";
 
-	const char* fragmentShaderSource = R"(
-		#version 300 es
-		precision highp float;
-		in vec2 TexCoord;
-		out vec4 FragColor;
-		
-		void main()
-		{
-			FragColor = vec4(TexCoord, 0.5, 1.0);
-		}
-	)";
+	const char* fragmentShaderSource = 
+		"#version 300 es\n"
+		"precision highp float;\n"
+		"in vec2 TexCoord;\n"
+		"out vec4 FragColor;\n"
+		"\n"
+		"void main()\n"
+		"{\n"
+		"    FragColor = vec4(TexCoord, 0.5, 1.0);\n"
+		"}\n";
 #else
 	// Desktop OpenGL 3.3 Core
 	const char* vertexShaderSource = R"(
