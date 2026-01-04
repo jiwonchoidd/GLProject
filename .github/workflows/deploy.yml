@@ -24,9 +24,7 @@ jobs:
         version: 3.1.51
         
     - name: Verify Emscripten
-      run: |
-        emcc --version
-        echo "Emscripten is ready!"
+      run: emcc --version
       
     - name: Build Web Version
       run: |
@@ -35,7 +33,6 @@ jobs:
         cd web-build
         emcmake cmake ..
         emmake make
-        echo "Build completed!"
         
     - name: Prepare deployment files
       run: |
@@ -45,9 +42,6 @@ jobs:
           cp DD_Sample/web-build/DD_Sample.html deploy/
           cp DD_Sample/web-build/DD_Sample.js deploy/
           cp DD_Sample/web-build/DD_Sample.wasm deploy/
-          echo "All build files copied!"
-        else
-          echo "Warning: Build files not found, deploying landing page only"
         fi
         
     - name: Upload artifact
