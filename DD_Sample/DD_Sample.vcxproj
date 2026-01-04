@@ -141,7 +141,6 @@
   <ItemGroup>
     <None Include=".github\workflows\deploy.yml" />
     <None Include=".gitignore" />
-    <None Include="build-web.bat" />
     <None Include="build-web.sh" />
     <None Include="DEPLOYMENT.md" />
     <None Include="docs\index.html" />

@@ -22,9 +22,6 @@
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include="build-web.sh" />
-    <None Include="build-web.bat">
-      <Filter>소스 파일</Filter>
-    </None>
     <None Include="docs\index.html" />
     <None Include="DEPLOYMENT.md" />
     <None Include=".github\workflows\deploy.yml" />

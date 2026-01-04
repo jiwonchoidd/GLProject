@@ -1,66 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Git\\DXproject\\DD_Sample\\",
+  "WorkspaceRootPath": "E:\\Git\\GLproject\\DD_Sample\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\DXproject\\DD_Sample\\DEPLOYMENT.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
-      "RelativeMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|solutionrelative:DEPLOYMENT.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\DXproject\\DD_Sample\\docs\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|solutionrelative:docs\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\DXproject\\DD_Sample\\DD_Sample.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\GLproject\\DD_Sample\\DD_Sample.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|solutionrelative:DD_Sample.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\DXproject\\DD_Sample\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}|",
+      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\GLproject\\DD_Engine\\DD_WinApplication.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\GLproject\\DD_Sample\\docs\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|solutionrelative:docs\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\GLproject\\DD_Engine\\DD_SimpleBox.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Sample\\DEPLOYMENT.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\GLproject\\DD_Sample\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}|",
       "RelativeMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\popo2\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-68a1a8c1-fa28-49cd-a080-f974df34458e.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\GIT\\DXPROJECT\\DD_ENGINE\\DD_CORE.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\DXproject\\DD_Engine\\DD_SimpleBox.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\DXproject\\DD_Engine\\DD_Core.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\DXproject\\DD_Engine\\DD_GLDevice.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\DXproject\\DD_Engine\\DD_SimpleBox.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\DXproject\\DD_Engine\\DD_GLDevice.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\DXproject\\DD_Engine\\DD_WinApplication.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\DXproject\\DD_Engine\\framework.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\DXproject\\DD_Engine\\DD_GLHelper.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\DXproject\\DD_Engine\\DD_WinApplication.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\DXproject\\DD_Sample\\PACKAGES\\GLFW.3.4.0\\BUILD\\NATIVE\\INCLUDE\\GLFW\\GLFW3.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|solutionrelative:PACKAGES\\GLFW.3.4.0\\BUILD\\NATIVE\\INCLUDE\\GLFW\\GLFW3.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\GIT\\DXPROJECT\\DD_SAMPLE\\PACKAGES\\GLEW-2.2.0.2.2.0.1\\BUILD\\NATIVE\\INCLUDE\\GL\\GLEW.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|solutionrelative:PACKAGES\\GLEW-2.2.0.2.2.0.1\\BUILD\\NATIVE\\INCLUDE\\GL\\GLEW.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43A2D249-6EAD-400C-A9E0-75C18D8EE750}|..\\DD_Engine\\DD_Engine.vcxproj|E:\\Git\\DXproject\\DD_Engine\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\popo2\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\-1678433031\\DD_Engine.vcxproj||{8B382828-6202-11D1-8870-0000F87579D2}"
@@ -75,28 +39,70 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Engine\\DD_GLDevice_new.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\DXproject\\DD_Sample\\CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\GLproject\\DD_Sample\\CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|solutionrelative:CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\DXproject\\DD_Sample\\shell.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\GLproject\\DD_Sample\\shell.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|solutionrelative:shell.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\DXproject\\DD_Sample\\build-web.sh||{3B902123-F8A7-4915-9F01-361F908088D0}|",
-      "RelativeMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|solutionrelative:build-web.sh||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Sample\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\DXproject\\DD_Sample\\build-web.bat||{3B902123-F8A7-4915-9F01-361F908088D0}|",
-      "RelativeMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|solutionrelative:build-web.bat||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Sample\\.github\\workflows\\deploy.yml||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\DXproject\\DD_Sample\\.github\\workflows\\deploy.yml||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|solutionrelative:.github\\workflows\\deploy.yml||{8B382828-6202-11D1-8870-0000F87579D2}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Sample\\build-web.sh||{3B902123-F8A7-4915-9F01-361F908088D0}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|E:\\Git\\DXproject\\DD_Sample\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
-      "RelativeMoniker": "D:0:0:{52376C21-675E-435C-97A1-D01AD64787C2}|DD_Sample.vcxproj|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Sample\\build-web.bat||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Engine\\DD_GLDevice.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Engine\\DD_WinApplication.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Engine\\DD_GLDevice.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Engine\\DD_SimpleBox.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Engine\\DD_Core.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Engine\\DD_Core.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Engine\\DD_SimpleBox.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Engine\\DD_GLHelper.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Engine\\DD_WinApplication.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Engine\\framework.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\GLproject\\DD_Sample\\packages\\glfw.3.4.0\\build\\native\\include\\GLFW\\glfw3.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:packages\\glfw.3.4.0\\build\\native\\include\\GLFW\\glfw3.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Engine\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\DXproject\\DD_Sample\\packages\\glew-2.2.0.2.2.0.1\\build\\native\\include\\GL\\glew.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\GLproject\\docs\\index.template.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Git\\GLproject\\.github\\workflows\\deploy.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -106,63 +112,140 @@
       "DocumentGroups": [
         {
           "DockedWidth": 242,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DEPLOYMENT.md",
-              "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\DEPLOYMENT.md",
-              "RelativeDocumentMoniker": "DEPLOYMENT.md",
-              "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\DEPLOYMENT.md",
-              "RelativeToolTip": "DEPLOYMENT.md",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAEoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2026-01-01T15:02:12.257Z",
+              "DocumentIndex": 1,
+              "Title": "DD_WinApplication.cpp",
+              "DocumentMoniker": "E:\\Git\\GLproject\\DD_Engine\\DD_WinApplication.cpp",
+              "RelativeDocumentMoniker": "..\\DD_Engine\\DD_WinApplication.cpp",
+              "ToolTip": "E:\\Git\\GLproject\\DD_Engine\\DD_WinApplication.cpp",
+              "RelativeToolTip": "..\\DD_Engine\\DD_WinApplication.cpp",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-01-04T14:22:17.594Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "README.md",
-              "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\README.md",
-              "RelativeDocumentMoniker": "README.md",
-              "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\README.md",
-              "RelativeToolTip": "README.md",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2026-01-01T15:01:49.913Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 31,
               "Title": "deploy.yml",
-              "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\.github\\workflows\\deploy.yml",
-              "RelativeDocumentMoniker": ".github\\workflows\\deploy.yml",
-              "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\.github\\workflows\\deploy.yml",
-              "RelativeToolTip": ".github\\workflows\\deploy.yml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "E:\\Git\\GLproject\\.github\\workflows\\deploy.yml",
+              "RelativeDocumentMoniker": "..\\.github\\workflows\\deploy.yml",
+              "ToolTip": "E:\\Git\\GLproject\\.github\\workflows\\deploy.yml",
+              "RelativeToolTip": "..\\.github\\workflows\\deploy.yml",
+              "ViewState": "AgIAAEoAAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2026-01-01T15:01:19.694Z",
+              "WhenOpened": "2026-01-04T14:20:30.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "index.template.html",
+              "DocumentMoniker": "E:\\Git\\GLproject\\docs\\index.template.html",
+              "RelativeDocumentMoniker": "..\\docs\\index.template.html",
+              "ToolTip": "E:\\Git\\GLproject\\docs\\index.template.html",
+              "RelativeToolTip": "..\\docs\\index.template.html",
+              "ViewState": "AgIAADAAAAAAAAAAAGBnwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-04T14:20:08.925Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": ".gitignore",
-              "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-01-01T14:59:31.083Z",
+              "Title": "DD_SimpleBox.cpp",
+              "DocumentMoniker": "E:\\Git\\GLproject\\DD_Engine\\DD_SimpleBox.cpp",
+              "RelativeDocumentMoniker": "..\\DD_Engine\\DD_SimpleBox.cpp",
+              "ToolTip": "E:\\Git\\GLproject\\DD_Engine\\DD_SimpleBox.cpp",
+              "RelativeToolTip": "..\\DD_Engine\\DD_SimpleBox.cpp",
+              "ViewState": "AgIAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-01-04T14:15:42.192Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "DEPLOYMENT.md",
+              "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\DEPLOYMENT.md",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Sample\\DEPLOYMENT.md",
+              "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\DEPLOYMENT.md",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Sample\\DEPLOYMENT.md",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-01-01T15:02:12.257Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DD_Sample.cpp",
+              "DocumentMoniker": "E:\\Git\\GLproject\\DD_Sample\\DD_Sample.cpp",
+              "RelativeDocumentMoniker": "DD_Sample.cpp",
+              "ToolTip": "E:\\Git\\GLproject\\DD_Sample\\DD_Sample.cpp",
+              "RelativeToolTip": "DD_Sample.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-12-29T01:56:15.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "deploy.yml",
+              "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\.github\\workflows\\deploy.yml",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Sample\\.github\\workflows\\deploy.yml",
+              "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\.github\\workflows\\deploy.yml",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Sample\\.github\\workflows\\deploy.yml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2026-01-01T15:01:19.694Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": ".gitignore",
+              "DocumentMoniker": "E:\\Git\\GLproject\\DD_Sample\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "E:\\Git\\GLproject\\DD_Sample\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-01T14:59:31.083Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "index.html",
+              "DocumentMoniker": "E:\\Git\\GLproject\\DD_Sample\\docs\\index.html",
+              "RelativeDocumentMoniker": "docs\\index.html",
+              "ToolTip": "E:\\Git\\GLproject\\DD_Sample\\docs\\index.html",
+              "RelativeToolTip": "docs\\index.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-01T15:01:01.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "README.md",
+              "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\README.md",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Sample\\README.md",
+              "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\README.md",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Sample\\README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-01-01T15:01:49.913Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "plan-68a1a8c1-fa28-49cd-a080-f974df34458e.md",
               "DocumentMoniker": "C:\\Users\\popo2\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-68a1a8c1-fa28-49cd-a080-f974df34458e.md",
               "ToolTip": "C:\\Users\\popo2\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-68a1a8c1-fa28-49cd-a080-f974df34458e.md [\uC77D\uAE30 \uC804\uC6A9]",
@@ -173,215 +256,179 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DD_Sample.cpp",
-              "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\DD_Sample.cpp",
-              "RelativeDocumentMoniker": "DD_Sample.cpp",
-              "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\DD_Sample.cpp",
-              "RelativeToolTip": "DD_Sample.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-12-29T01:56:15.2Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "index.html",
-              "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\docs\\index.html",
-              "RelativeDocumentMoniker": "docs\\index.html",
-              "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\docs\\index.html",
-              "RelativeToolTip": "docs\\index.html",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAALQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-01-01T15:01:01.568Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 12,
               "Title": "shell.html",
-              "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\shell.html",
+              "DocumentMoniker": "E:\\Git\\GLproject\\DD_Sample\\shell.html",
               "RelativeDocumentMoniker": "shell.html",
-              "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\shell.html",
+              "ToolTip": "E:\\Git\\GLproject\\DD_Sample\\shell.html",
               "RelativeToolTip": "shell.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAI4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-01-01T15:00:26.013Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-01T15:00:26.013Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 15,
               "Title": "build-web.sh",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\build-web.sh",
-              "RelativeDocumentMoniker": "build-web.sh",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Sample\\build-web.sh",
               "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\build-web.sh",
-              "RelativeToolTip": "build-web.sh",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Sample\\build-web.sh",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-01-01T15:00:32.086Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-01T15:00:32.086Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 16,
               "Title": "build-web.bat",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\build-web.bat",
-              "RelativeDocumentMoniker": "build-web.bat",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Sample\\build-web.bat",
               "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\build-web.bat",
-              "RelativeToolTip": "build-web.bat",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Sample\\build-web.bat",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE6SURBVDhPY6AI/P//H8oiHzBWlpfeBxqlAOWTCBgfMJGi2ds3AIUG660sL/n/69cvDLznyJn/uw6dwioHwyC9QBeggqu3HzDsOHiS4d37Dwxv371nWL/9AMO5yzegspgAwwAWJiaGb9\u002B\u002BM5joaTKYGmgxfPv\u002BjYGFBUMZHGDI/Pn7l\u002BH3718Mf//9ZfgHZP/5/Zvhz5\u002B/UFlMgGHAz58/GRiB9IGjpxj2HTnBwAjknDp7HuiSHxAFaADDACNdDYYwPzcGPh4uhr9Am5\u002B9eMrw6Mljho6\u002BiQw3bt6GqkIAnJ4L9HJh8HS2Yfj44SNDW005w4d37xg4ONigsgiAO3SA4OtXYAACVeQWlTKwsjJjTbl4DVBXVWaoKMpnsLG0YOjtaGNQVMBMc8CkXAxMyoxkJuX/D6CMAQMMDABIjqFEM6osUwAAAABJRU5ErkJggg==",
-              "WhenOpened": "2026-01-01T15:00:37.833Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-01T15:00:37.833Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 11,
               "Title": "CMakeLists.txt",
-              "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\CMakeLists.txt",
+              "DocumentMoniker": "E:\\Git\\GLproject\\DD_Sample\\CMakeLists.txt",
               "RelativeDocumentMoniker": "CMakeLists.txt",
-              "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\CMakeLists.txt",
+              "ToolTip": "E:\\Git\\GLproject\\DD_Sample\\CMakeLists.txt",
               "RelativeToolTip": "CMakeLists.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2026-01-01T14:59:58.861Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+              "WhenOpened": "2026-01-01T14:59:58.861Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 17,
               "Title": "DD_GLDevice.cpp",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Engine\\DD_GLDevice.cpp",
-              "RelativeDocumentMoniker": "..\\DD_Engine\\DD_GLDevice.cpp",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Engine\\DD_GLDevice.cpp",
               "ToolTip": "E:\\Git\\DXproject\\DD_Engine\\DD_GLDevice.cpp",
-              "RelativeToolTip": "..\\DD_Engine\\DD_GLDevice.cpp",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Engine\\DD_GLDevice.cpp",
               "ViewState": "AgIAAHoAAAAAAAAAAAApwIUAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-01-01T07:28:43.861Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 18,
               "Title": "DD_WinApplication.cpp",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Engine\\DD_WinApplication.cpp",
-              "RelativeDocumentMoniker": "..\\DD_Engine\\DD_WinApplication.cpp",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Engine\\DD_WinApplication.cpp",
               "ToolTip": "E:\\Git\\DXproject\\DD_Engine\\DD_WinApplication.cpp",
-              "RelativeToolTip": "..\\DD_Engine\\DD_WinApplication.cpp",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Engine\\DD_WinApplication.cpp",
               "ViewState": "AgIAABIAAAAAAAAAAAApwBoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-12-29T14:41:43.144Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 19,
               "Title": "DD_GLDevice.h",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Engine\\DD_GLDevice.h",
-              "RelativeDocumentMoniker": "..\\DD_Engine\\DD_GLDevice.h",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Engine\\DD_GLDevice.h",
               "ToolTip": "E:\\Git\\DXproject\\DD_Engine\\DD_GLDevice.h",
-              "RelativeToolTip": "..\\DD_Engine\\DD_GLDevice.h",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Engine\\DD_GLDevice.h",
               "ViewState": "AgIAACoAAAAAAAAAAAAAADgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-01-01T07:28:19.046Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 20,
               "Title": "DD_SimpleBox.cpp",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Engine\\DD_SimpleBox.cpp",
-              "RelativeDocumentMoniker": "..\\DD_Engine\\DD_SimpleBox.cpp",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Engine\\DD_SimpleBox.cpp",
               "ToolTip": "E:\\Git\\DXproject\\DD_Engine\\DD_SimpleBox.cpp",
-              "RelativeToolTip": "..\\DD_Engine\\DD_SimpleBox.cpp",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Engine\\DD_SimpleBox.cpp",
               "ViewState": "AgIAAPMAAAAAAAAAAAAgwNoAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-12-29T14:47:12.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-29T14:47:12.781Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 21,
               "Title": "DD_Core.h",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Engine\\DD_Core.h",
-              "RelativeDocumentMoniker": "..\\DD_Engine\\DD_Core.h",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Engine\\DD_Core.h",
               "ToolTip": "E:\\Git\\DXproject\\DD_Engine\\DD_Core.h",
-              "RelativeToolTip": "..\\DD_Engine\\DD_Core.h",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Engine\\DD_Core.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-12-29T14:53:19.552Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-29T14:53:19.552Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 22,
               "Title": "DD_Core.cpp",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Engine\\DD_Core.cpp",
-              "RelativeDocumentMoniker": "..\\DD_Engine\\DD_Core.cpp",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Engine\\DD_Core.cpp",
               "ToolTip": "E:\\Git\\DXproject\\DD_Engine\\DD_Core.cpp",
-              "RelativeToolTip": "..\\DD_Engine\\DD_Core.cpp",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Engine\\DD_Core.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-12-29T14:37:45.84Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 23,
               "Title": "DD_SimpleBox.h",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Engine\\DD_SimpleBox.h",
-              "RelativeDocumentMoniker": "..\\DD_Engine\\DD_SimpleBox.h",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Engine\\DD_SimpleBox.h",
               "ToolTip": "E:\\Git\\DXproject\\DD_Engine\\DD_SimpleBox.h",
-              "RelativeToolTip": "..\\DD_Engine\\DD_SimpleBox.h",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Engine\\DD_SimpleBox.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-12-29T14:36:32.448Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 24,
               "Title": "DD_GLHelper.h",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Engine\\DD_GLHelper.h",
-              "RelativeDocumentMoniker": "..\\DD_Engine\\DD_GLHelper.h",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Engine\\DD_GLHelper.h",
               "ToolTip": "E:\\Git\\DXproject\\DD_Engine\\DD_GLHelper.h",
-              "RelativeToolTip": "..\\DD_Engine\\DD_GLHelper.h",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Engine\\DD_GLHelper.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-01-01T14:16:17.395Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 25,
               "Title": "DD_WinApplication.h",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Engine\\DD_WinApplication.h",
-              "RelativeDocumentMoniker": "..\\DD_Engine\\DD_WinApplication.h",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Engine\\DD_WinApplication.h",
               "ToolTip": "E:\\Git\\DXproject\\DD_Engine\\DD_WinApplication.h",
-              "RelativeToolTip": "..\\DD_Engine\\DD_WinApplication.h",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Engine\\DD_WinApplication.h",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAAMAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-12-29T14:14:53.986Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 26,
               "Title": "framework.h",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Engine\\framework.h",
-              "RelativeDocumentMoniker": "..\\DD_Engine\\framework.h",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Engine\\framework.h",
               "ToolTip": "E:\\Git\\DXproject\\DD_Engine\\framework.h",
-              "RelativeToolTip": "..\\DD_Engine\\framework.h",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Engine\\framework.h",
               "ViewState": "AgIAABoAAAAAAAAAAAApwCYAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-12-29T14:16:09.361Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 27,
               "Title": "glfw3.h",
-              "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\packages\\glfw.3.4.0\\build\\native\\include\\GLFW\\glfw3.h",
+              "DocumentMoniker": "E:\\Git\\GLproject\\DD_Sample\\packages\\glfw.3.4.0\\build\\native\\include\\GLFW\\glfw3.h",
               "RelativeDocumentMoniker": "packages\\glfw.3.4.0\\build\\native\\include\\GLFW\\glfw3.h",
-              "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\packages\\glfw.3.4.0\\build\\native\\include\\GLFW\\glfw3.h",
+              "ToolTip": "E:\\Git\\GLproject\\DD_Sample\\packages\\glfw.3.4.0\\build\\native\\include\\GLFW\\glfw3.h",
               "RelativeToolTip": "packages\\glfw.3.4.0\\build\\native\\include\\GLFW\\glfw3.h",
               "ViewState": "AgIAAJQAAAAAAAAAAAAMwKIAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
@@ -389,7 +436,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 7,
               "Title": "DD_Engine.vcxproj",
               "DocumentMoniker": "C:\\Users\\popo2\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\-1678433031\\DD_Engine.vcxproj",
               "ToolTip": "C:\\Users\\popo2\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\-1678433031\\DD_Engine.vcxproj",
@@ -399,7 +446,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 9,
               "Title": "plan-f5264f6d-055f-4489-bfa0-c0723e1d9e2a.md",
               "DocumentMoniker": "C:\\Users\\popo2\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-f5264f6d-055f-4489-bfa0-c0723e1d9e2a.md",
               "ToolTip": "C:\\Users\\popo2\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-f5264f6d-055f-4489-bfa0-c0723e1d9e2a.md [\uC77D\uAE30 \uC804\uC6A9]",
@@ -410,30 +457,30 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 28,
               "Title": "packages.config",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Engine\\packages.config",
-              "RelativeDocumentMoniker": "..\\DD_Engine\\packages.config",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Engine\\packages.config",
               "ToolTip": "E:\\Git\\DXproject\\DD_Engine\\packages.config",
-              "RelativeToolTip": "..\\DD_Engine\\packages.config",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Engine\\packages.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 29,
               "Title": "glew.h",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Sample\\packages\\glew-2.2.0.2.2.0.1\\build\\native\\include\\GL\\glew.h",
-              "RelativeDocumentMoniker": "packages\\glew-2.2.0.2.2.0.1\\build\\native\\include\\GL\\glew.h",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Sample\\packages\\glew-2.2.0.2.2.0.1\\build\\native\\include\\GL\\glew.h",
               "ToolTip": "E:\\Git\\DXproject\\DD_Sample\\packages\\glew-2.2.0.2.2.0.1\\build\\native\\include\\GL\\glew.h",
-              "RelativeToolTip": "packages\\glew-2.2.0.2.2.0.1\\build\\native\\include\\GL\\glew.h",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Sample\\packages\\glew-2.2.0.2.2.0.1\\build\\native\\include\\GL\\glew.h",
               "ViewState": "AgIAAJYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-01-01T14:08:24.866Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 8,
               "Title": "plan-5c68cf90-bd80-4185-a75b-d248bfc22d37.md",
               "DocumentMoniker": "C:\\Users\\popo2\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-5c68cf90-bd80-4185-a75b-d248bfc22d37.md",
               "ToolTip": "C:\\Users\\popo2\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-5c68cf90-bd80-4185-a75b-d248bfc22d37.md [\uC77D\uAE30 \uC804\uC6A9]",
@@ -444,12 +491,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 10,
               "Title": "DD_GLDevice_new.cpp",
               "DocumentMoniker": "E:\\Git\\DXproject\\DD_Engine\\DD_GLDevice_new.cpp",
-              "RelativeDocumentMoniker": "..\\DD_Engine\\DD_GLDevice_new.cpp",
+              "RelativeDocumentMoniker": "..\\..\\DXproject\\DD_Engine\\DD_GLDevice_new.cpp",
               "ToolTip": "E:\\Git\\DXproject\\DD_Engine\\DD_GLDevice_new.cpp",
-              "RelativeToolTip": "..\\DD_Engine\\DD_GLDevice_new.cpp",
+              "RelativeToolTip": "..\\..\\DXproject\\DD_Engine\\DD_GLDevice_new.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACkBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-01-01T13:42:44.246Z"
