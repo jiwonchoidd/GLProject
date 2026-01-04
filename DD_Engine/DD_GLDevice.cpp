@@ -6,42 +6,40 @@
 #endif
 
 #ifdef __EMSCRIPTEN__
-static const char* vertexShaderSource = R"(
-#version 300 es
-precision highp float;
+static const char* vertexShaderSource = 
+"#version 300 es\n"
+"precision highp float;\n"
+"\n"
+"in vec3 aPosition;\n"
+"in vec2 aTexCoord;\n"
+"\n"
+"uniform mat4 uWorld;\n"
+"uniform mat4 uView;\n"
+"uniform mat4 uProjection;\n"
+"\n"
+"out vec2 vTexCoord;\n"
+"\n"
+"void main()\n"
+"{\n"
+"    vec4 worldPos = uWorld * vec4(aPosition, 1.0);\n"
+"    vec4 viewPos = uView * worldPos;\n"
+"    gl_Position = uProjection * viewPos;\n"
+"    vTexCoord = aTexCoord;\n"
+"}\n";
 
-in vec3 aPosition;
-in vec2 aTexCoord;
-
-uniform mat4 uWorld;
-uniform mat4 uView;
-uniform mat4 uProjection;
-
-out vec2 vTexCoord;
-
-void main()
-{
-    vec4 worldPos = uWorld * vec4(aPosition, 1.0);
-    vec4 viewPos = uView * worldPos;
-    gl_Position = uProjection * viewPos;
-    vTexCoord = aTexCoord;
-}
-)";
-
-static const char* fragmentShaderSource = R"(
-#version 300 es
-precision mediump float;
-
-in vec2 vTexCoord;
-uniform vec4 uColor;
-
-out vec4 fragColor;
-
-void main()
-{
-    fragColor = uColor;
-}
-)";
+static const char* fragmentShaderSource = 
+"#version 300 es\n"
+"precision mediump float;\n"
+"\n"
+"in vec2 vTexCoord;\n"
+"uniform vec4 uColor;\n"
+"\n"
+"out vec4 fragColor;\n"
+"\n"
+"void main()\n"
+"{\n"
+"    fragColor = uColor;\n"
+"}\n";
 #else
 // Desktop OpenGL 3.3 Core
 static const char* vertexShaderSource = R"(

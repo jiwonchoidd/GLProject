@@ -21,15 +21,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
-    <None Include="shell.html" />
     <None Include="build-web.sh" />
     <None Include="build-web.bat">
       <Filter>소스 파일</Filter>
     </None>
     <None Include="docs\index.html" />
-    <None Include=".github\workflows\deploy.yml" />
-    <None Include="README.md" />
     <None Include="DEPLOYMENT.md" />
+    <None Include=".github\workflows\deploy.yml" />
+    <None Include="vcpkg.json" />
+    <None Include="shell.html" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
