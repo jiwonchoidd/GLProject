@@ -23,6 +23,13 @@ jobs:
       with:
         version: 3.1.51
         
+    - name: Install GLM
+      run: |
+        cd DD_Sample
+        wget https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
+        unzip -q glm-0.9.9.8.zip
+        rm glm-0.9.9.8.zip
+        
     - name: Verify Emscripten
       run: emcc --version
       

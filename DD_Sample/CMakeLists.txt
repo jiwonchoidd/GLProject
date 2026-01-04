@@ -37,6 +37,12 @@ if(EMSCRIPTEN)
     
     target_compile_definitions(DD_Sample PRIVATE __EMSCRIPTEN__)
     
+    # Include GLM header-only library
+    target_include_directories(DD_Sample PRIVATE 
+        ../DD_Engine
+        ${CMAKE_SOURCE_DIR}/glm
+    )
+    
 else()
     # Desktop build
     find_package(OpenGL REQUIRED)
@@ -61,6 +67,7 @@ else()
         ${GLEW_INCLUDE_DIR}
         ${GLM_INCLUDE_DIR}
         ${OPENGL_INCLUDE_DIR}
+        ../DD_Engine
     )
     
     target_link_libraries(DD_Sample 
@@ -71,6 +78,3 @@ else()
     
     target_compile_definitions(DD_Sample PRIVATE DD_ENGINE_EXPORTS)
 endif()
-
-# Include directories
-target_include_directories(DD_Sample PRIVATE ../DD_Engine)
