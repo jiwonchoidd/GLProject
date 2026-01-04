@@ -15,20 +15,20 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: ?? Checkout code
+    - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: ?? Setup Emscripten
+    - name: Setup Emscripten
       uses: mymindstorm/setup-emsdk@v14
       with:
         version: 3.1.51
         
-    - name: ? Verify Emscripten
+    - name: Verify Emscripten
       run: |
         emcc --version
         echo "Emscripten is ready!"
       
-    - name: ??? Build Web Version
+    - name: Build Web Version
       run: |
         cd DD_Sample
         mkdir -p web-build
@@ -37,7 +37,7 @@ jobs:
         emmake make
         echo "Build completed!"
         
-    - name: ?? Prepare deployment files
+    - name: Prepare deployment files
       run: |
         mkdir -p deploy
         cp DD_Sample/docs/index.html deploy/
@@ -50,7 +50,7 @@ jobs:
           echo "Warning: Build files not found, deploying landing page only"
         fi
         
-    - name: ?? Upload artifact
+    - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
         path: deploy
@@ -63,6 +63,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
       
     steps:
-    - name: ?? Deploy to GitHub Pages
+    - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4

@@ -1,89 +1,170 @@
-# GitHub Pages 배포 가이드 (로컬 빌드)
+# GitHub Pages Deployment Guide
 
-## ?? 빠른 배포 (Emscripten 없이도 가능!)
+## Auto Deployment Setup
 
-### 방법 1: 미리 빌드된 파일 사용 (가장 쉬움)
-이미 빌드된 파일이 있다면:
+### 1. Enable GitHub Pages (One-time setup)
+
+1. Go to GitHub repository:
+   ```
+   https://github.com/jiwonchoidd/GLProject
+   ```
+
+2. Click **Settings** → **Pages**
+
+3. Set **Source**:
+   - Select **GitHub Actions**
+   - Not "Deploy from a branch"
+
+4. Click **Save**
+
+### 2. Push Code for Auto Build
 
 ```bash
-# docs/ 폴더에 빌드 결과물 복사
-# DD_Sample.html, DD_Sample.js, DD_Sample.wasm
+# 1. Modify code
+# Edit DD_Sample.cpp in Visual Studio
 
-git add docs/
-git commit -m "Add web build files"
+# 2. Commit & Push
+git add .
+git commit -m "Update game"
 git push origin main
+
+# 3. GitHub Actions automatically:
+#    - Installs Emscripten
+#    - Builds for web (.wasm, .js)
+#    - Deploys to GitHub Pages
 ```
 
-### 방법 2: 직접 빌드
+### 3. Check Build Status
 
-#### Windows에서 Emscripten 설치 (한 번만)
+1. Go to **GitHub** → **Actions** tab
+2. Check latest workflow:
+   - In progress (yellow)
+   - Success (green check)
+   - Failed (red X - check logs)
+
+3. Wait 3-5 minutes after success
+
+4. Visit website:
+   ```
+   https://jiwonchoidd.github.io/GLProject/
+   ```
+
+---
+
+## Workflow Process
+
+```
+Local PC (git push)
+    ↓
+GitHub Actions starts
+    ↓
+┌─────────────────────────┐
+│ 1. Create Ubuntu VM     │
+│ 2. Checkout code        │
+│ 3. Install Emscripten   │
+│ 4. CMake build          │
+│ 5. Generate .wasm/.js   │
+│ 6. Deploy to Pages      │
+└─────────────────────────┘
+    ↓
+Website updated!
+```
+
+---
+
+## Troubleshooting
+
+### Build Failure
+
+1. Click failed workflow in **Actions** tab
+2. Click step with red X
+3. Check logs
+4. Common causes:
+   - CMakeLists.txt path error
+   - Missing source files
+   - Compilation errors
+
+### Key Log Locations
+
+```yaml
+Build Web Version     # Build errors here
+Prepare deployment    # File copy issues here
+Deploy to Pages       # Deployment errors here
+```
+
+---
+
+## Local Development Workflow
+
+### Recommended:
+
 ```bash
-# emsdk 다운로드
+# 1. Develop on Windows
+Visual Studio → F5 (run/test desktop version)
+
+# 2. Commit when ready
+git add .
+git commit -m "Add new feature"
+
+# 3. Push
+git push origin main
+
+# 4. GitHub Actions builds web version automatically
+# 5. Check result on website
+```
+
+### Benefits:
+- No Emscripten installation needed locally
+- No build environment management
+- Auto-deploy on push
+- Email notification on build failure
+
+---
+
+## Private Repository Limits
+
+- **2,000 minutes/month** (Free plan)
+- Build time: ~3-5 minutes per run
+- **400-600 builds per month available**
+- More than enough!
+
+---
+
+## Local Testing (Optional)
+
+To test with Emscripten locally:
+
+```bash
+# 1. Install Emscripten (once)
 git clone https://github.com/emscripten-core/emsdk.git
 cd emsdk
 emsdk install latest
 emsdk activate latest
-```
 
-#### 빌드 실행
-```bash
-# DD_Sample 폴더로 이동
+# 2. Build
 cd DD_Sample
-
-# 빌드
 build-web.bat
 
-# 결과물 복사
-copy web-build\DD_Sample.* docs\
-```
-
-## ?? GitHub Pages 설정
-
-### 1. 코드 푸시
-```bash
-git add .
-git commit -m "Add web game files"
-git push origin main
-```
-
-### 2. GitHub Pages 활성화
-1. GitHub 저장소 → **Settings** → **Pages**
-2. **Source**: **Deploy from a branch**
-3. **Branch**: **main** → **/docs** 폴더 선택
-4. **Save**
-
-### 3. 확인
-3-5분 후:
-- `https://jiwonchoidd.github.io/GLProject/`
-
-## ?? 로컬 테스트
-
-```bash
-cd docs
+# 3. Run local server
+cd web-build
 python -m http.server 8000
-# http://localhost:8000/
+
+# 4. Test in browser
+http://localhost:8000/DD_Sample.html
 ```
 
-## ?? 파일 구조
+But **GitHub Actions makes this unnecessary!**
 
-```
-docs/
-├── index.html          # 랜딩 페이지
-├── DD_Sample.html      # 게임 (빌드 후 생성)
-├── DD_Sample.js        # (빌드 후 생성)
-└── DD_Sample.wasm      # (빌드 후 생성)
-```
+---
 
-## ?? 팁
+## Checklist
 
-**Emscripten 없이 테스트하려면?**
-- Windows 데스크탑 버전(`.exe`)으로 먼저 개발
-- 완성되면 한 번만 Emscripten 빌드
-- 빌드 결과물만 GitHub에 올리기
+- [x] Create `.github/workflows/deploy.yml`
+- [x] Commit and push code
+- [ ] GitHub → Settings → Pages → Select **GitHub Actions**
+- [ ] Check build success in Actions tab
+- [ ] Test website access
 
-**온라인 빌드 서비스 이용:**
-- GitHub Codespaces
-- Replit
-- CodeSandbox
+---
 
-더 간단하죠? ??
+Simple and easy to manage!
