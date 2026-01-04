@@ -19,4 +19,19 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include="shell.html" />
+    <None Include="build-web.sh" />
+    <None Include="build-web.bat">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="docs\index.html" />
+    <None Include=".github\workflows\deploy.yml" />
+    <None Include="README.md" />
+    <None Include="DEPLOYMENT.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
+  </ItemGroup>
 </Project>

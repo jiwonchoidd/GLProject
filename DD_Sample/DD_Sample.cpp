@@ -1,5 +1,4 @@
 #include "../DD_Engine/DD_Core.h"
-#include "../DD_Engine/DD_WinApplication.h"
 #include <windows.h>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)

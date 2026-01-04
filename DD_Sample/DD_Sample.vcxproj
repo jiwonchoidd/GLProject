@@ -138,6 +138,19 @@
       <Project>{43a2d249-6ead-400c-a9e0-75c18d8ee750}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include=".github\workflows\deploy.yml" />
+    <None Include=".gitignore" />
+    <None Include="build-web.bat" />
+    <None Include="build-web.sh" />
+    <None Include="DEPLOYMENT.md" />
+    <None Include="docs\index.html" />
+    <None Include="README.md" />
+    <None Include="shell.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
