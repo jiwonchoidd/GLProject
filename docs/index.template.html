@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DD_Engine - Samples</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .samples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .sample {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .sample:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .sample h2 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .sample p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        .sample a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #fff;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .sample a:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            opacity: 0.8;
+        }
+        footer a {
+            color: #fff;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DD_Engine Samples</h1>
+        <p style="text-align: center; opacity: 0.9;">Choose a sample to run:</p>
+        
+        <div class="samples">
+            <!-- Samples will be added here by build script -->
+            {{SAMPLES}}
+        </div>
+        
+        <footer>
+            <a href="https://github.com/jiwonchoidd/GLProject">GitHub</a> |
+            <a href="https://github.com/jiwonchoidd/GLProject/blob/main/DEPLOYMENT.md">Docs</a>
+        </footer>
+    </div>
+</body>
+</html>
