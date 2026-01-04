@@ -1,9 +1,7 @@
-name: Build and Deploy to GitHub Pages
+name: Build and Deploy Web Version
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
   workflow_dispatch:
 
@@ -13,48 +11,58 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout
+    - name: ?? Checkout code
       uses: actions/checkout@v4
       
-    - name: Setup Emscripten
+    - name: ?? Setup Emscripten
       uses: mymindstorm/setup-emsdk@v14
       with:
         version: 3.1.51
         
-    - name: Verify Emscripten
-      run: emcc --version
+    - name: ? Verify Emscripten
+      run: |
+        emcc --version
+        echo "Emscripten is ready!"
       
-    - name: Build Web Version
+    - name: ??? Build Web Version
       run: |
         cd DD_Sample
         mkdir -p web-build
         cd web-build
         emcmake cmake ..
         emmake make
+        echo "Build completed!"
         
-    - name: Prepare deployment
+    - name: ?? Prepare deployment files
       run: |
         mkdir -p deploy
         cp DD_Sample/docs/index.html deploy/
-        cp DD_Sample/web-build/DD_Sample.* deploy/ 2>/dev/null || true
+        if [ -f DD_Sample/web-build/DD_Sample.html ]; then
+          cp DD_Sample/web-build/DD_Sample.html deploy/
+          cp DD_Sample/web-build/DD_Sample.js deploy/
+          cp DD_Sample/web-build/DD_Sample.wasm deploy/
+          echo "All build files copied!"
+        else
+          echo "Warning: Build files not found, deploying landing page only"
+        fi
         
-    - name: Upload artifact
+    - name: ?? Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
         path: deploy
         
   deploy:
-    needs: build
+    needs: build-and-deploy
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
       
     steps:
-    - name: Deploy to GitHub Pages
+    - name: ?? Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4

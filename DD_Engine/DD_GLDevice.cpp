@@ -1,11 +1,11 @@
 #include "DD_GLDevice.h"
 #include <cstdio>
 
-#ifndef PLATFORM_WEB
+#ifndef __EMSCRIPTEN__
 #include <GL/glew.h>
 #endif
 
-#ifdef PLATFORM_WEB
+#ifdef __EMSCRIPTEN__
 static const char* vertexShaderSource = R"(
 #version 300 es
 precision highp float;
@@ -117,7 +117,7 @@ bool DD_GLDevice::CreateDevice(int width, int height)
 		return false;
 	}
 	
-#ifdef PLATFORM_WEB
+#ifdef __EMSCRIPTEN__
 	// GLFW window hints for OpenGL ES 3.0 (WebGL 2.0)
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_ES_API);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -140,7 +140,7 @@ bool DD_GLDevice::CreateDevice(int width, int height)
 	
 	glfwMakeContextCurrent(m_window);
 	
-#ifndef PLATFORM_WEB
+#ifndef __EMSCRIPTEN__
 	// Initialize GLEW (Desktop only)
 	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
