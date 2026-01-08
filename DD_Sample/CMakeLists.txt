@@ -18,6 +18,10 @@ if(EMSCRIPTEN)
     
     # Link to DD_Engine
     target_link_libraries(DD_Sample PRIVATE DD_Engine)
+
+    # Ensure GLFW port is enabled for Emscripten so glfw* symbols are available
+    # Use linker flags since CMake version may not support target_link_options
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s USE_GLFW=3")
     
     # Set output to HTML
     set_target_properties(DD_Sample PROPERTIES SUFFIX ".html")
