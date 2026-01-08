@@ -6,22 +6,26 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Engine source files
 set(ENGINE_SOURCES
-    DD_Core.cpp
-    DD_Application.cpp
-    DD_GLDevice.cpp
-    DD_SimpleBox.cpp
+    source/DD_Application.cpp
+    source/DD_Camera.cpp
+    source/DD_Core.cpp
+    source/DD_GLDevice.cpp
+    source/DD_SimpleBox.cpp
+    source/DD_World.cpp
 )
 
 set(ENGINE_HEADERS
-    DD_Core.h
-    DD_Application.h
-    DD_GLDevice.h
-    DD_SimpleBox.h
-    DD_GLHelper.h
-    framework.h
+    source/DD_Application.h
+    source/DD_Camera.h
+    source/DD_Core.h
+    source/DD_GLDevice.h
+    source/DD_SimpleBox.h
+    source/DD_World.h
+    source/DD_GLHelper.h
+    source/framework.h
 )
 
-# Platform-specific settings
+# Platform-specific settings    
 if(EMSCRIPTEN)
     # Emscripten (Web) build - Static library
     add_library(DD_Engine STATIC ${ENGINE_SOURCES} ${ENGINE_HEADERS})
@@ -31,6 +35,7 @@ if(EMSCRIPTEN)
     # Include GLM header-only library
     target_include_directories(DD_Engine PUBLIC 
         ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/source
         ${CMAKE_CURRENT_SOURCE_DIR}/glm
     )
     
@@ -55,6 +60,7 @@ else()
     
     target_include_directories(DD_Engine PUBLIC 
         ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/source
         ${GLFW_INCLUDE_DIR}
         ${GLEW_INCLUDE_DIR}
         ${GLM_INCLUDE_DIR}
