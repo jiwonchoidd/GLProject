@@ -1,7 +1,9 @@
 #include "DD_GLDevice.h"
 #include <cstdio>
 
-#ifndef __EMSCRIPTEN__
+#ifdef __EMSCRIPTEN__
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
 #endif
 
@@ -25,7 +27,8 @@ static const char* vertexShaderSource =
 "    vec4 viewPos = uView * worldPos;\n"
 "    gl_Position = uProjection * viewPos;\n"
 "    vTexCoord = aTexCoord;\n"
-"}\n";
+"}\n"
+"";
 
 static const char* fragmentShaderSource = 
 "#version 300 es\n"
@@ -39,7 +42,8 @@ static const char* fragmentShaderSource =
 "void main()\n"
 "{\n"
 "    fragColor = uColor;\n"
-"}\n";
+"}\n"
+"";
 #else
 // Desktop OpenGL 3.3 Core
 static const char* vertexShaderSource = R"(
@@ -80,7 +84,7 @@ void main()
 
 void DD_GLDevice::Initialize()
 {
-	// Singleton 초기화 - 멤버 변수만 초기화
+	// Singleton 초기화 - 멤버 변수들 초기화
 	m_initialized = false;
 	m_program = 0;
 	m_width = 1280;
