@@ -1,5 +1,6 @@
 #include "DD_World.h"
 #include "DD_SimpleBox.h"
+#include "DD_Camera.h"
 #include <cstdio>
 
 DD_World::DD_World()

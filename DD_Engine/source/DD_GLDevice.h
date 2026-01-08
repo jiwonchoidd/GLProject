@@ -1,5 +1,4 @@
 #pragma once
-#include "DD_Core.h"
 #include "DD_GLHelper.h"
 #include "framework.h"
 

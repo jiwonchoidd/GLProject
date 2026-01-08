@@ -1,6 +1,4 @@
 #pragma once
-#include "DD_SimpleBox.h"
-#include "DD_Camera.h"
 #include <vector>
 
 class DD_World
@@ -14,7 +12,7 @@ public:
     void Render();
 
 private:
-    std::vector<DD_SimpleBox*> m_boxes;
-    DD_Camera* m_camera;
+    std::vector<class DD_SimpleBox*> m_boxes;
+    class DD_Camera* m_camera;
 };
 
