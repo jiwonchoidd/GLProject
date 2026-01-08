@@ -18,37 +18,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DD_Core.cpp">
+    <ClCompile Include="source\DD_Core.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DD_WinApplication.cpp">
+    <ClCompile Include="source\DD_Application.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="imgui\imgui.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_demo.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_draw.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_tables.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_widgets.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_impl_dx11.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_impl_win32.cpp">
-      <Filter>Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="DD_SimpleBox.cpp">
+    <ClCompile Include="source\DD_SimpleBox.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DD_GLDevice.cpp">
+    <ClCompile Include="source\DD_GLDevice.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DD_World.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DD_Camera.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -58,46 +43,28 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DD_Core.h">
+    <ClInclude Include="source\DD_Core.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DD_WinApplication.h">
+    <ClInclude Include="source\DD_Application.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="source\framework.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="imgui\imconfig.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imgui.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imgui_internal.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imstb_rectpack.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imstb_textedit.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imstb_truetype.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imgui_impl_dx11.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imgui_impl_win32.h">
-      <Filter>Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="DD_SimpleBox.h">
+    <ClInclude Include="source\DD_SimpleBox.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DD_GLDevice.h">
+    <ClInclude Include="source\DD_GLDevice.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DD_GLHelper.h">
+    <ClInclude Include="source\DD_GLHelper.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DD_World.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DD_Camera.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

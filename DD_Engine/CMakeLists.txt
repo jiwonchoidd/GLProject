@@ -7,14 +7,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Engine source files
 set(ENGINE_SOURCES
     DD_Core.cpp
-    DD_WinApplication.cpp
+    DD_Application.cpp
     DD_GLDevice.cpp
     DD_SimpleBox.cpp
 )
 
 set(ENGINE_HEADERS
     DD_Core.h
-    DD_WinApplication.h
+    DD_Application.h
     DD_GLDevice.h
     DD_SimpleBox.h
     DD_GLHelper.h

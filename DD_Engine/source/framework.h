@@ -13,6 +13,8 @@
 #include <chrono>
 #include <iostream>
 #include <cstdint>
+#include <typeindex>
+#include <unordered_map>
 
 #if defined(_WIN32) || defined(_WIN64)
 #  ifdef DD_ENGINE_EXPORTS

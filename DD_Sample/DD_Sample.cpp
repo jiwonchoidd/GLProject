@@ -1,4 +1,5 @@
-#include "../DD_Engine/DD_Core.h"
+#include "../DD_Engine/source/DD_Application.h"
+#include "../DD_Engine/source/DD_Core.h"
 
 #ifdef _WIN32
 #include <windows.h>

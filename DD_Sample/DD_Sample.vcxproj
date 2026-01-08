@@ -139,13 +139,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".github\workflows\deploy.yml" />
     <None Include=".gitignore" />
-    <None Include="build-web.sh" />
-    <None Include="DEPLOYMENT.md" />
     <None Include="docs\index.html" />
     <None Include="shell.html" />
-    <None Include="vcpkg.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />

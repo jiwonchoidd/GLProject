@@ -19,17 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DD_Core.cpp" />
-    <ClCompile Include="DD_GLDevice.cpp" />
-    <ClCompile Include="DD_SimpleBox.cpp" />
-    <ClCompile Include="DD_WinApplication.cpp" />
-    <ClCompile Include="imgui\imgui.cpp" />
-    <ClCompile Include="imgui\imgui_demo.cpp" />
-    <ClCompile Include="imgui\imgui_draw.cpp" />
-    <ClCompile Include="imgui\imgui_impl_dx11.cpp" />
-    <ClCompile Include="imgui\imgui_impl_win32.cpp" />
-    <ClCompile Include="imgui\imgui_tables.cpp" />
-    <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="source\DD_Camera.cpp" />
+    <ClCompile Include="source\DD_World.cpp" />
+    <ClCompile Include="source\DD_Core.cpp" />
+    <ClCompile Include="source\DD_GLDevice.cpp" />
+    <ClCompile Include="source\DD_SimpleBox.cpp" />
+    <ClCompile Include="source\DD_Application.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="resource\Test.hlsl">
@@ -38,20 +33,14 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DD_Core.h" />
-    <ClInclude Include="DD_GLDevice.h" />
-    <ClInclude Include="DD_GLHelper.h" />
-    <ClInclude Include="DD_SimpleBox.h" />
-    <ClInclude Include="DD_WinApplication.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="imgui\imconfig.h" />
-    <ClInclude Include="imgui\imgui.h" />
-    <ClInclude Include="imgui\imgui_impl_dx11.h" />
-    <ClInclude Include="imgui\imgui_impl_win32.h" />
-    <ClInclude Include="imgui\imgui_internal.h" />
-    <ClInclude Include="imgui\imstb_rectpack.h" />
-    <ClInclude Include="imgui\imstb_textedit.h" />
-    <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="source\DD_Camera.h" />
+    <ClInclude Include="source\DD_World.h" />
+    <ClInclude Include="source\DD_Core.h" />
+    <ClInclude Include="source\DD_GLDevice.h" />
+    <ClInclude Include="source\DD_GLHelper.h" />
+    <ClInclude Include="source\DD_SimpleBox.h" />
+    <ClInclude Include="source\DD_Application.h" />
+    <ClInclude Include="source\framework.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -153,7 +142,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;DD_ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectPath)\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -170,7 +159,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;DD_ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>DXUT\Core;DXUT\Optional;$(ProjectDir)lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>DXUT\Core;DXUT\Optional;$(ProjectDir)lib;%(AdditionalIncludeDirectories);$(ProjectPath)\source</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

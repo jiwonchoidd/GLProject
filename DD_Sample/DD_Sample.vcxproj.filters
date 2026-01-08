@@ -21,11 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
-    <None Include="build-web.sh" />
     <None Include="docs\index.html" />
-    <None Include="DEPLOYMENT.md" />
-    <None Include=".github\workflows\deploy.yml" />
-    <None Include="vcpkg.json" />
     <None Include="shell.html" />
   </ItemGroup>
   <ItemGroup>
