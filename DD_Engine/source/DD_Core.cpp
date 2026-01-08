@@ -4,6 +4,10 @@
 #include "DD_SimpleBox.h"
 #include "DD_World.h"
 
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
 GLuint g_cbNeverChanges = 0;
 GLuint g_cbChangeOnResize = 0;
 
@@ -83,12 +87,20 @@ void DD_Core::OnResize(int width, int height)
 
 void DD_Core::OnTouchStart(int x, int y)
 {
+#ifdef _WIN32
 	OutputDebugStringA("Touch Start\n");
+#else
+	printf("Touch Start\n");
+#endif
 }
 
 void DD_Core::OnTouchEnd(int x, int y)
 {
+#ifdef _WIN32
 	OutputDebugStringA("Touch End\n");
+#else
+	printf("Touch End\n");
+#endif
 }
 
 DD_Core::DD_Core(int width, int height, const char* name)
