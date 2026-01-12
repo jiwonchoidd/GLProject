@@ -14,6 +14,10 @@ set(ENGINE_SOURCES
     source/DD_World.cpp
     source/DD_Mesh.cpp
     source/DD_MeshComponent.cpp
+    source/DD_Actor.cpp
+    source/DD_CameraController.cpp
+    source/DD_CollisionUtils.cpp
+    source/DD_DebugDraw.cpp
 )
 
 set(ENGINE_HEADERS
@@ -27,6 +31,8 @@ set(ENGINE_HEADERS
     source/framework.h
     source/DD_Mesh.h
     source/DD_MeshComponent.h
+    source/DD_CollisionComponent.h
+    source/DD_DebugDraw.h
 )
 
 # Platform-specific settings    
