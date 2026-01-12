@@ -1,34 +1,26 @@
 #pragma once
 #include "framework.h"
 #include "DD_GLHelper.h"
+#include "DD_Transform.h"
+#include "DD_Mesh.h"
 
-class DD_SimpleBox
+class DD_SimpleBox : public DD_Mesh
 {
 public:
-	static bool CachePipline();
-	static void ClearPipline();
+    static bool CachePipline();
+    static void ClearPipline();
 public:
-	void Create(const Vec3& pos);
+    virtual void CreateMesh() override;
+    virtual void PrepareForRender(const Matrix4& model, const Matrix4& view, const Matrix4& projection) override;
 public:
-	void Render();
-public:
-	void AddPos(const Vec3& addpos);
-	void AddRot(const Vec3& addrot);
-	void SetPos(const Vec3& pos) { m_position = pos; }
-	Vec3 GetPos() const { return m_position; }
-private:
-	GLuint m_vao;
-	GLuint m_vbo;
-	GLuint m_ibo;
-	GLuint m_vertexBuffer;
-	GLuint m_indexBuffer;
-	int m_indexCount;
-private:
-	Vec3 m_rotation;
-	Vec3 m_position;
-	Color m_color;
-public:
-	DD_SimpleBox();
-	virtual ~DD_SimpleBox();
-};
+    DD_SimpleBox();
+    virtual ~DD_SimpleBox();
 
+private:
+    // shader program and uniform locations are static per mesh type
+    static GLuint s_shaderProgram;
+    static GLint s_modelLoc;
+    static GLint s_viewLoc;
+    static GLint s_projLoc;
+    static bool s_initialized;
+};

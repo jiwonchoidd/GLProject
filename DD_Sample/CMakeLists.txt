@@ -20,8 +20,10 @@ if(EMSCRIPTEN)
     target_link_libraries(DD_Sample PRIVATE DD_Engine)
 
     # Ensure GLFW port is enabled for Emscripten so glfw* symbols are available
-    # Use linker flags since CMake version may not support target_link_options
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s USE_GLFW=3")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s USE_GLFW=3 -s FULL_ES3=1 -s MINIMAL_RUNTIME=0")
+    # Request WebGL2 context at runtime by using WebGL2 hint in code; also attempt to enable WEBGL2 via flags
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DEMSCRIPTEN_WEBGL2=1")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DEMSCRIPTEN_WEBGL2=1")
     
     # Set output to HTML
     set_target_properties(DD_Sample PROPERTIES SUFFIX ".html")
@@ -42,9 +44,11 @@ else()
     target_link_libraries(DD_Sample PRIVATE DD_Engine)
     
     # Copy DLL to output directory
+    if(TARGET DD_Engine)
     add_custom_command(TARGET DD_Sample POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         $<TARGET_FILE:DD_Engine>
         $<TARGET_FILE_DIR:DD_Sample>
     )
+    endif()
 endif()

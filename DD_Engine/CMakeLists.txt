@@ -12,6 +12,8 @@ set(ENGINE_SOURCES
     source/DD_GLDevice.cpp
     source/DD_SimpleBox.cpp
     source/DD_World.cpp
+    source/DD_Mesh.cpp
+    source/DD_MeshComponent.cpp
 )
 
 set(ENGINE_HEADERS
@@ -23,6 +25,8 @@ set(ENGINE_HEADERS
     source/DD_World.h
     source/DD_GLHelper.h
     source/framework.h
+    source/DD_Mesh.h
+    source/DD_MeshComponent.h
 )
 
 # Platform-specific settings    

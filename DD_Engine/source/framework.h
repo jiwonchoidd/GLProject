@@ -16,6 +16,9 @@
 #include <typeindex>
 #include <unordered_map>
 
+// Small float value used for numerical comparisons
+static constexpr float DD_SMALL_NUMBER = 1e-6f;
+
 #if defined(_WIN32) || defined(_WIN64)
 #  ifdef DD_ENGINE_EXPORTS
 #    define DD_ENGINE_API __declspec(dllexport)

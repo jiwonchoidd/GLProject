@@ -3,6 +3,7 @@
 #include "DD_Application.h"
 #include "DD_SimpleBox.h"
 #include "DD_World.h"
+#include "DD_CameraController.h"
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -10,9 +11,6 @@
 
 GLuint g_cbNeverChanges = 0;
 GLuint g_cbChangeOnResize = 0;
-
-Matrix4 g_View;
-Matrix4 g_Projection;
 
 // DD_Engine ----------------------------------------------------------------------------
 
@@ -34,6 +32,10 @@ void DD_Core::OnInit()
 	}
 
 	m_world->Init(m_width, m_height);
+
+	// create camera controller
+	if (m_camController) delete m_camController;
+	m_camController = new DD_CameraController(m_world->GetCamera());
 }
 
 void DD_Core::OnUpdate()
@@ -69,6 +71,8 @@ void DD_Core::OnDestroy()
 {
 	printf("DD_Core::OnDestroy()\n");
 
+	if (m_camController) { delete m_camController; m_camController = nullptr; }
+
 	for (const auto& system : systems)
 	{
 		system->Finalize();
@@ -92,6 +96,7 @@ void DD_Core::OnTouchStart(int x, int y)
 #else
 	printf("Touch Start\n");
 #endif
+	if (m_camController) m_camController->OnPointerDown(x, y);
 }
 
 void DD_Core::OnTouchEnd(int x, int y)
@@ -101,6 +106,17 @@ void DD_Core::OnTouchEnd(int x, int y)
 #else
 	printf("Touch End\n");
 #endif
+	if (m_camController) m_camController->OnPointerUp(x, y);
+}
+
+void DD_Core::OnPointerMove(int x, int y)
+{
+	if (m_camController) m_camController->OnPointerMove(x, y);
+}
+
+void DD_Core::OnScroll(float delta)
+{
+	if (m_camController) m_camController->OnScroll(delta);
 }
 
 DD_Core::DD_Core(int width, int height, const char* name)

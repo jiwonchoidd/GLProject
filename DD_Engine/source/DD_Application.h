@@ -17,6 +17,10 @@ public:
 
 	virtual void OnResize(int w, int h) {}
 
+	// Pointer and scroll callbacks for camera control (desktop and web)
+	virtual void OnPointerMove(int x, int y) {}
+	virtual void OnScroll(float delta) {}
+
 	int GetWidth() const { return m_width; }
 	int GetHeight() const { return m_height; }
 	const char* GetTitle() const { return m_title; }

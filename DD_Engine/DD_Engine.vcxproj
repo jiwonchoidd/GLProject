@@ -19,7 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\DD_Actor.cpp" />
     <ClCompile Include="source\DD_Camera.cpp" />
+    <ClCompile Include="source\DD_CameraController.cpp" />
+    <ClCompile Include="source\DD_CollisionUtils.cpp" />
+    <ClCompile Include="source\DD_DebugDraw.cpp" />
+    <ClCompile Include="source\DD_Mesh.cpp" />
+    <ClCompile Include="source\DD_MeshComponent.cpp" />
     <ClCompile Include="source\DD_World.cpp" />
     <ClCompile Include="source\DD_Core.cpp" />
     <ClCompile Include="source\DD_GLDevice.cpp" />
@@ -33,7 +39,15 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\DD_Actor.h" />
     <ClInclude Include="source\DD_Camera.h" />
+    <ClInclude Include="source\DD_CameraController.h" />
+    <ClInclude Include="source\DD_CollisionComponent.h" />
+    <ClInclude Include="source\DD_CollisionUtils.h" />
+    <ClInclude Include="source\DD_DebugDraw.h" />
+    <ClInclude Include="source\DD_Mesh.h" />
+    <ClInclude Include="source\DD_MeshComponent.h" />
+    <ClInclude Include="source\DD_Transform.h" />
     <ClInclude Include="source\DD_World.h" />
     <ClInclude Include="source\DD_Core.h" />
     <ClInclude Include="source\DD_GLDevice.h" />

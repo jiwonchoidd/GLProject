@@ -56,6 +56,26 @@ EM_BOOL resize_callback(int eventType, const EmscriptenUiEvent* uiEvent, void* u
     }
     return EM_TRUE;
 }
+
+EM_BOOL mouse_move_callback(int eventType, const EmscriptenMouseEvent* mouseEvent, void* userData)
+{
+    if (g_app)
+    {
+        g_app->OnPointerMove(mouseEvent->clientX, mouseEvent->clientY);
+    }
+    return EM_TRUE;
+}
+
+EM_BOOL wheel_callback(int eventType, const EmscriptenWheelEvent* wheelEvent, void* userData)
+{
+    if (g_app)
+    {
+        // wheelEvent->deltaY is in CSS pixels; invert for natural zoom
+        g_app->OnScroll(static_cast<float>(-wheelEvent->deltaY));
+    }
+    return EM_TRUE;
+}
+
 #else
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
@@ -75,6 +95,22 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
         {
             g_app->OnTouchEnd(x, y);
         }
+    }
+}
+
+void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    if (g_app)
+    {
+        g_app->OnPointerMove(static_cast<int>(xpos), static_cast<int>(ypos));
+    }
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    if (g_app)
+    {
+        g_app->OnScroll(static_cast<float>(yoffset));
     }
 }
 
@@ -98,6 +134,8 @@ int DD_Application::Run(AppBase* app)
     emscripten_set_touchend_callback("#canvas", nullptr, EM_TRUE, touch_end_callback);
 
     emscripten_set_resize_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW, nullptr, EM_FALSE, resize_callback);
+    emscripten_set_mousemove_callback("#canvas", nullptr, EM_TRUE, mouse_move_callback);
+    emscripten_set_wheel_callback("#canvas", nullptr, EM_TRUE, wheel_callback);
 
     emscripten_set_main_loop(MainLoop, 0, 1);
 #else
@@ -105,6 +143,8 @@ int DD_Application::Run(AppBase* app)
     if (window)
     {
         glfwSetMouseButtonCallback(window, mouse_button_callback);
+        glfwSetCursorPosCallback(window, cursor_pos_callback);
+        glfwSetScrollCallback(window, scroll_callback);
         glfwSetWindowSizeCallback(window, window_size_callback);
     }
 

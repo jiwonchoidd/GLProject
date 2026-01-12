@@ -140,7 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
-    <None Include="docs\index.html" />
     <None Include="shell.html" />
   </ItemGroup>
   <ItemGroup>

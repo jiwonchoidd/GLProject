@@ -4,11 +4,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 DD_Camera::DD_Camera()
-    : m_position(0.0f, 10.0f, -10.0f)
-    , m_target(0.0f, 0.0f, 0.0f)
-    , m_up(0.0f, 1.0f, 0.0f)
-    , m_fov(80.0f * 3.14159265358979323846f / 180.0f)
+    : m_fov(80.0f * 3.14159265358979323846f / 180.0f)
 {
+    m_transform.position = Vec3(0.0f, 0.0f, 10.0f);
     UpdateView();
 }
 
@@ -24,5 +22,9 @@ void DD_Camera::UpdateProjection(int width, int height)
 
 void DD_Camera::UpdateView()
 {
-    m_view = glm::lookAt(m_position, m_target, m_up);
+    Quaternion q = GetQuat(m_transform);
+    glm::vec3 forward = q * glm::vec3(0.0f, 0.0f, -1.0f);
+    glm::vec3 pos = glm::vec3(m_transform.position.x, m_transform.position.y, m_transform.position.z);
+    glm::vec3 target = pos + forward;
+    m_view = glm::lookAt(pos, target, glm::vec3(0.f, 1.f, 0.f));
 }
