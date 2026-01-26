@@ -13,7 +13,7 @@ struct Transform
         : position(0.0f), rotation(0.0f), scale(1.0f) {}
 };
 
-using Quaternion = glm::quat;
+// Quaternion is now defined in DD_GLHelper.h
 
 inline Matrix4 BuildModelMatrix(const Transform& t)
 {
