@@ -36,25 +36,62 @@ void DD_Core::OnInit()
 	// create camera controller
 	if (m_camController) delete m_camController;
 	m_camController = new DD_CameraController(m_world->GetCamera());
+
+	SetupInputCallbacks();
+}
+
+void DD_Core::SetupInputCallbacks()
+{
+	// Keyboard callback
+	AddKeyCallback([this](int key, int action) {
+		if (!m_camController) return;
+		if (action == GLFW_PRESS)
+			m_camController->OnKeyDown(key);
+		else if (action == GLFW_RELEASE)
+			m_camController->OnKeyUp(key);
+	});
+
+	// Mouse move callback
+	AddMouseMoveCallback([this](int x, int y) {
+		if (m_camController) m_camController->OnPointerMove(x, y);
+	});
+
+	// Scroll callback
+	AddScrollCallback([this](float delta) {
+		if (m_camController) m_camController->OnScroll(delta);
+	});
+
+	// Mouse button callback
+	AddMouseButtonCallback([this](int button, int action, int x, int y) {
+		if (!m_camController) return;
+		if (button == GLFW_MOUSE_BUTTON_LEFT || button == GLFW_MOUSE_BUTTON_RIGHT)
+		{
+			if (action == GLFW_PRESS)
+				m_camController->OnPointerDown(x, y);
+			else if (action == GLFW_RELEASE)
+				m_camController->OnPointerUp(x, y);
+		}
+	});
 }
 
 void DD_Core::OnUpdate()
 {
 	using clock = std::chrono::steady_clock;
 
-	static double elapsedTime = 0;
 	static auto prevTime = clock::now();
 	auto currentTime = clock::now();
 
-	double deltaTime = std::chrono::duration<double>(currentTime - prevTime).count();
+	m_deltaTime = static_cast<float>(std::chrono::duration<double>(currentTime - prevTime).count());
 	prevTime = currentTime;
-	elapsedTime += deltaTime;
 
-	m_world->Update(static_cast<float>(deltaTime));
+	// Update camera controller
+	if (m_camController) m_camController->Update(m_deltaTime);
+
+	m_world->Update(m_deltaTime);
 
 	for (const auto& system : systems)
 	{
-		system->Tick(static_cast<float>(deltaTime));
+		system->Tick(m_deltaTime);
 	}
 }
 
@@ -96,7 +133,6 @@ void DD_Core::OnTouchStart(int x, int y)
 #else
 	printf("Touch Start\n");
 #endif
-	if (m_camController) m_camController->OnPointerDown(x, y);
 }
 
 void DD_Core::OnTouchEnd(int x, int y)
@@ -106,17 +142,6 @@ void DD_Core::OnTouchEnd(int x, int y)
 #else
 	printf("Touch End\n");
 #endif
-	if (m_camController) m_camController->OnPointerUp(x, y);
-}
-
-void DD_Core::OnPointerMove(int x, int y)
-{
-	if (m_camController) m_camController->OnPointerMove(x, y);
-}
-
-void DD_Core::OnScroll(float delta)
-{
-	if (m_camController) m_camController->OnScroll(delta);
 }
 
 DD_Core::DD_Core(int width, int height, const char* name)

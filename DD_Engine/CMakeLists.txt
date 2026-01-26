@@ -18,6 +18,16 @@ set(ENGINE_SOURCES
     source/DD_CameraController.cpp
     source/DD_CollisionUtils.cpp
     source/DD_DebugDraw.cpp
+    source/DD_RenderTarget.cpp
+    source/DD_ShadowRenderer.cpp
+    source/DD_SceneRenderer.cpp
+    source/DD_Component.cpp
+    source/DD_LightComponent.cpp
+    source/DD_LightActor.cpp
+    source/DD_Material.cpp
+    source/DD_Texture.cpp
+    source/DD_GBuffer.cpp
+    source/DD_DeferredRenderer.cpp
 )
 
 set(ENGINE_HEADERS
@@ -33,6 +43,17 @@ set(ENGINE_HEADERS
     source/DD_MeshComponent.h
     source/DD_CollisionComponent.h
     source/DD_DebugDraw.h
+    source/DD_RenderTarget.h
+    source/DD_ShadowRenderer.h
+    source/DD_SceneRenderer.h
+    source/DD_Component.h
+    source/DD_LightComponent.h
+    source/DD_LightActor.h
+    source/DD_Material.h
+    source/DD_Texture.h
+    source/DD_GBuffer.h
+    source/DD_DeferredRenderer.h
+    source/stb_image.h
 )
 
 # Platform-specific settings    

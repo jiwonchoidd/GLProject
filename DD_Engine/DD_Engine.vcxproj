@@ -23,9 +23,19 @@
     <ClCompile Include="source\DD_Camera.cpp" />
     <ClCompile Include="source\DD_CameraController.cpp" />
     <ClCompile Include="source\DD_CollisionUtils.cpp" />
+    <ClCompile Include="source\DD_Component.cpp" />
     <ClCompile Include="source\DD_DebugDraw.cpp" />
+    <ClCompile Include="source\DD_DeferredRenderer.cpp" />
+    <ClCompile Include="source\DD_GBuffer.cpp" />
+    <ClCompile Include="source\DD_LightActor.cpp" />
+    <ClCompile Include="source\DD_LightComponent.cpp" />
+    <ClCompile Include="source\DD_Material.cpp" />
     <ClCompile Include="source\DD_Mesh.cpp" />
     <ClCompile Include="source\DD_MeshComponent.cpp" />
+    <ClCompile Include="source\DD_RenderTarget.cpp" />
+    <ClCompile Include="source\DD_SceneRenderer.cpp" />
+    <ClCompile Include="source\DD_ShadowRenderer.cpp" />
+    <ClCompile Include="source\DD_Texture.cpp" />
     <ClCompile Include="source\DD_World.cpp" />
     <ClCompile Include="source\DD_Core.cpp" />
     <ClCompile Include="source\DD_GLDevice.cpp" />
@@ -44,9 +54,19 @@
     <ClInclude Include="source\DD_CameraController.h" />
     <ClInclude Include="source\DD_CollisionComponent.h" />
     <ClInclude Include="source\DD_CollisionUtils.h" />
+    <ClInclude Include="source\DD_Component.h" />
     <ClInclude Include="source\DD_DebugDraw.h" />
+    <ClInclude Include="source\DD_DeferredRenderer.h" />
+    <ClInclude Include="source\DD_GBuffer.h" />
+    <ClInclude Include="source\DD_LightActor.h" />
+    <ClInclude Include="source\DD_LightComponent.h" />
+    <ClInclude Include="source\DD_Material.h" />
     <ClInclude Include="source\DD_Mesh.h" />
     <ClInclude Include="source\DD_MeshComponent.h" />
+    <ClInclude Include="source\DD_RenderTarget.h" />
+    <ClInclude Include="source\DD_SceneRenderer.h" />
+    <ClInclude Include="source\DD_ShadowRenderer.h" />
+    <ClInclude Include="source\DD_Texture.h" />
     <ClInclude Include="source\DD_Transform.h" />
     <ClInclude Include="source\DD_World.h" />
     <ClInclude Include="source\DD_Core.h" />
@@ -55,6 +75,7 @@
     <ClInclude Include="source\DD_SimpleBox.h" />
     <ClInclude Include="source\DD_Application.h" />
     <ClInclude Include="source\framework.h" />
+    <ClInclude Include="source\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

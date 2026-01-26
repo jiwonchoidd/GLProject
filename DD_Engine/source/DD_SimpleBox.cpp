@@ -6,6 +6,7 @@
 struct SimpleVertex
 {
     glm::vec3 Pos;
+    glm::vec3 Normal;
     glm::vec2 Tex;
 };
 
@@ -145,35 +146,53 @@ void DD_SimpleBox::ClearPipline()
 
 void DD_SimpleBox::CreateMesh()
 {
-    // Cube vertices (8 vertices)
+    // Cube with proper face normals (24 vertices for 6 faces)
     SimpleVertex vertices[] = {
-        // Front face (Z+)
-        { glm::vec3(-1.0f, -1.0f,  1.0f), glm::vec2(0.0f, 0.0f) }, // 0
-        { glm::vec3( 1.0f, -1.0f,  1.0f), glm::vec2(1.0f, 0.0f) }, // 1
-        { glm::vec3( 1.0f,  1.0f,  1.0f), glm::vec2(1.0f, 1.0f) }, // 2
-        { glm::vec3(-1.0f,  1.0f,  1.0f), glm::vec2(0.0f, 1.0f) }, // 3
+        // Front face (Z+) - Normal (0, 0, 1)
+        { glm::vec3(-1.0f, -1.0f,  1.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec2(0.0f, 0.0f) },
+        { glm::vec3( 1.0f, -1.0f,  1.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec2(1.0f, 0.0f) },
+        { glm::vec3( 1.0f,  1.0f,  1.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec2(1.0f, 1.0f) },
+        { glm::vec3(-1.0f,  1.0f,  1.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec2(0.0f, 1.0f) },
         
-        // Back face (Z-)
-        { glm::vec3(-1.0f, -1.0f, -1.0f), glm::vec2(0.0f, 0.0f) }, // 4
-        { glm::vec3( 1.0f, -1.0f, -1.0f), glm::vec2(1.0f, 0.0f) }, // 5
-        { glm::vec3( 1.0f,  1.0f, -1.0f), glm::vec2(1.0f, 1.0f) }, // 6
-        { glm::vec3(-1.0f,  1.0f, -1.0f), glm::vec2(0.0f, 1.0f) }, // 7
+        // Back face (Z-) - Normal (0, 0, -1)
+        { glm::vec3( 1.0f, -1.0f, -1.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec2(0.0f, 0.0f) },
+        { glm::vec3(-1.0f, -1.0f, -1.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec2(1.0f, 0.0f) },
+        { glm::vec3(-1.0f,  1.0f, -1.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec2(1.0f, 1.0f) },
+        { glm::vec3( 1.0f,  1.0f, -1.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec2(0.0f, 1.0f) },
+        
+        // Left face (X-) - Normal (-1, 0, 0)
+        { glm::vec3(-1.0f, -1.0f, -1.0f), glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec2(0.0f, 0.0f) },
+        { glm::vec3(-1.0f, -1.0f,  1.0f), glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec2(1.0f, 0.0f) },
+        { glm::vec3(-1.0f,  1.0f,  1.0f), glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec2(1.0f, 1.0f) },
+        { glm::vec3(-1.0f,  1.0f, -1.0f), glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec2(0.0f, 1.0f) },
+        
+        // Right face (X+) - Normal (1, 0, 0)
+        { glm::vec3( 1.0f, -1.0f,  1.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec2(0.0f, 0.0f) },
+        { glm::vec3( 1.0f, -1.0f, -1.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec2(1.0f, 0.0f) },
+        { glm::vec3( 1.0f,  1.0f, -1.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec2(1.0f, 1.0f) },
+        { glm::vec3( 1.0f,  1.0f,  1.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec2(0.0f, 1.0f) },
+        
+        // Top face (Y+) - Normal (0, 1, 0)
+        { glm::vec3(-1.0f,  1.0f,  1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0.0f, 0.0f) },
+        { glm::vec3( 1.0f,  1.0f,  1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(1.0f, 0.0f) },
+        { glm::vec3( 1.0f,  1.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(1.0f, 1.0f) },
+        { glm::vec3(-1.0f,  1.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0.0f, 1.0f) },
+        
+        // Bottom face (Y-) - Normal (0, -1, 0)
+        { glm::vec3(-1.0f, -1.0f, -1.0f), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec2(0.0f, 0.0f) },
+        { glm::vec3( 1.0f, -1.0f, -1.0f), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec2(1.0f, 0.0f) },
+        { glm::vec3( 1.0f, -1.0f,  1.0f), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec2(1.0f, 1.0f) },
+        { glm::vec3(-1.0f, -1.0f,  1.0f), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec2(0.0f, 1.0f) },
     };
 
-    // 36 indices for 12 triangles (6 faces * 2 triangles)
+    // 36 indices for 12 triangles (6 faces)
     GLushort indices[] = {
-        // Front
-        0, 1, 2,  2, 3, 0,
-        // Back
-        5, 4, 7,  7, 6, 5,
-        // Left
-        4, 0, 3,  3, 7, 4,
-        // Right
-        1, 5, 6,  6, 2, 1,
-        // Top
-        3, 2, 6,  6, 7, 3,
-        // Bottom
-        4, 5, 1,  1, 0, 4
+        0,  1,  2,   2,  3,  0,   // Front
+        4,  5,  6,   6,  7,  4,   // Back
+        8,  9,  10,  10, 11, 8,   // Left
+        12, 13, 14,  14, 15, 12,  // Right
+        16, 17, 18,  18, 19, 16,  // Top
+        20, 21, 22,  22, 23, 20   // Bottom
     };
 
     m_indexCount = 36;
@@ -191,10 +210,15 @@ void DD_SimpleBox::CreateMesh()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
+    // Position
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(SimpleVertex), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(SimpleVertex), (void*)(sizeof(glm::vec3)));
+    // Normal
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(SimpleVertex), (void*)(sizeof(glm::vec3)));
     glEnableVertexAttribArray(1);
+    // TexCoord
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(SimpleVertex), (void*)(sizeof(glm::vec3) * 2));
+    glEnableVertexAttribArray(2);
 
 #ifndef __EMSCRIPTEN__
     glBindVertexArray(0);
