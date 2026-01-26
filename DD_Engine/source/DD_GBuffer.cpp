@@ -57,20 +57,30 @@ bool DD_GBuffer::CreateBuffers()
     glGenFramebuffers(1, &m_fbo);
     glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
 
-    // Position texture (RGBA16F)
+#ifdef __EMSCRIPTEN__
+    // WebGL2: RGBA16F needs EXT_color_buffer_float for render targets
+    // Use RGBA32F which is more widely supported, or fall back to RGBA8
+    GLenum floatFormat = GL_RGBA16F;
+    GLenum floatType = GL_HALF_FLOAT;
+#else
+    GLenum floatFormat = GL_RGBA16F;
+    GLenum floatType = GL_FLOAT;
+#endif
+
+    // Position texture
     glGenTextures(1, &m_positionTex);
     glBindTexture(GL_TEXTURE_2D, m_positionTex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, m_width, m_height, 0, GL_RGBA, GL_FLOAT, nullptr);
+    glTexImage2D(GL_TEXTURE_2D, 0, floatFormat, m_width, m_height, 0, GL_RGBA, floatType, nullptr);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_positionTex, 0);
 
-    // Normal texture (RGBA16F)
+    // Normal texture
     glGenTextures(1, &m_normalTex);
     glBindTexture(GL_TEXTURE_2D, m_normalTex);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, m_width, m_height, 0, GL_RGBA, GL_FLOAT, nullptr);
+    glTexImage2D(GL_TEXTURE_2D, 0, floatFormat, m_width, m_height, 0, GL_RGBA, floatType, nullptr);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -87,7 +97,7 @@ bool DD_GBuffer::CreateBuffers()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, m_albedoTex, 0);
 
-    // Material texture (RGBA8) - Metallic, Roughness, Emissive flag
+    // Material texture (RGBA8)
     glGenTextures(1, &m_materialTex);
     glBindTexture(GL_TEXTURE_2D, m_materialTex);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
@@ -100,7 +110,11 @@ bool DD_GBuffer::CreateBuffers()
     // Depth texture
     glGenTextures(1, &m_depthTex);
     glBindTexture(GL_TEXTURE_2D, m_depthTex);
+#ifdef __EMSCRIPTEN__
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, m_width, m_height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, nullptr);
+#else
     glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, m_width, m_height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr);
+#endif
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -121,6 +135,7 @@ bool DD_GBuffer::CreateBuffers()
     }
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    printf("G-Buffer created successfully\n");
     return true;
 }
 

@@ -53,16 +53,26 @@ void DD_World::Init(int width, int height)
     DD_ShadowRenderer::CacheShaders();
     DD_SceneRenderer::CacheShaders();
 
+#ifdef __EMSCRIPTEN__
+    // WebGL2: Smaller shadow map
+    if (!m_shadowRenderer->Initialize(1024))
+#else
     if (!m_shadowRenderer->Initialize(4096))
+#endif
     {
         printf("Warning: Shadow renderer initialization failed\n");
         m_shadowEnabled = false;
     }
 
+    // Try deferred rendering on both platforms
     if (!m_deferredRenderer->Initialize(width, height))
     {
         printf("Warning: Deferred renderer initialization failed, using forward rendering\n");
         m_useDeferredRendering = false;
+    }
+    else
+    {
+        printf("Deferred rendering initialized successfully\n");
     }
 
     // Create sun light
